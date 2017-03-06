@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Initial from './components/Initial';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
-import MainMap from './components/MainMap';
+import MainMap from './components/map/MainMap';
 import SpotsList from './components/spots/SpotsList';
 import SpotDetail from './components/spots/SpotDetail';
 import { Spinner } from './components/common';

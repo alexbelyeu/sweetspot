@@ -30,6 +30,30 @@ class SpotDetail extends Component {
   }
 }
 
+SpotDetail.propTypes = {
+  tappedSpot: React.PropTypes.shape({
+    name: React.PropTypes.string,
+    promo: React.PropTypes.string,
+    description: React.PropTypes.string,
+    position: React.PropTypes.string,
+    behind: React.PropTypes.string,
+    behind_image: React.PropTypes.string,
+    image: React.PropTypes.string,
+  }),
+};
+
+SpotDetail.defaultProps = {
+  tappedSpot: {
+    name: '',
+    promo: '',
+    description: '',
+    position: '',
+    behind: '',
+    behind_image: '',
+    image: '',
+  },
+};
+
 const mapStateToProps = ({ mapReducer }) => {
   const { tappedSpot } = mapReducer;
   return { tappedSpot };

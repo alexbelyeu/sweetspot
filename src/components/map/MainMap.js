@@ -1,9 +1,9 @@
 import React from 'react';
-import { Actions } from 'react-native-router-flux';
 import MapView, { MAP_TYPES, Marker } from 'react-native-maps';
-import { StyleSheet, View, Text, Image, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
-import { loadSpots, updateMyPosition, updateRegion, tapOnSpot } from '../actions';
+import { loadSpots, updateMyPosition, updateRegion, tapOnSpot } from '../../actions';
+import SpotPreview from './SpotPreview';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,27 +13,6 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
-  },
-  bubble: {
-    backgroundColor: 'rgba(255,255,255,1)',
-    paddingHorizontal: 18,
-    paddingVertical: 12,
-    borderRadius: 20,
-  },
-  latlng: {
-    width: 200,
-    alignItems: 'stretch',
-  },
-  button: {
-    width: 80,
-    paddingHorizontal: 12,
-    alignItems: 'center',
-    marginHorizontal: 10,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    marginVertical: 20,
-    backgroundColor: 'transparent',
   },
 });
 
@@ -74,11 +53,6 @@ class MainMap extends React.Component {
     this.props.updateRegion(region);
   }
 
-  spotPressed(spot) {
-    this.props.tapOnSpot(spot);
-    Actions.spotDetail();
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -89,13 +63,8 @@ class MainMap extends React.Component {
           style={styles.map}
           initialRegion={this.props.region}
           onRegionChange={region => this.onRegionChange(region)}
-          onPress={() => this.props.tapOnSpot(null)}
+          onPress={() => null}
         >
-          <Marker
-            coordinate={{ latitude: this.props.myLocation.latitude,
-              longitude: this.props.myLocation.longitude }}
-            pinColor="blue"
-          />
           {this.props.items.map(marker => (
             <Marker
               coordinate={marker.latlng}
@@ -104,29 +73,13 @@ class MainMap extends React.Component {
               key={marker.id}
             />
           ))}
+          <Marker
+            coordinate={{ latitude: this.props.myLocation.latitude,
+              longitude: this.props.myLocation.longitude }}
+            pinColor="blue"
+          />
         </MapView>
-        {this.props.tappedSpot &&
-          <TouchableWithoutFeedback
-            onPress={() => this.spotPressed(this.props.tappedSpot)}
-          >
-            <View style={[styles.bubble, styles.latlng]}>
-              <Text style={{ textAlign: 'center' }}>
-                {this.props.tappedSpot.name}
-              </Text>
-              <Text style={{ textAlign: 'center' }}>
-                {this.props.tappedSpot.promo}
-              </Text>
-              <Image
-                style={{ width: 50, height: 50 }}
-                source={{ uri: this.props.tappedSpot.image }}
-              />
-              <Text style={{ textAlign: 'center' }}>
-                {this.props.region.latitude.toPrecision(7)},
-                {this.props.region.longitude.toPrecision(7)}
-              </Text>
-            </View>
-          </TouchableWithoutFeedback>
-        }
+        {this.props.tappedSpot && <SpotPreview /> }
       </View>
     );
   }
@@ -136,11 +89,28 @@ MainMap.propTypes = {
   loadSpots: React.PropTypes.func,
   tokenRouter: React.PropTypes.string,
   items: React.PropTypes.arrayOf(React.PropTypes.object),
-  region: React.PropTypes.shape({ }),  // TODO proper defintion
-  myLocation: React.PropTypes.shape({ }),  // TODO proper defintion
+  region: React.PropTypes.shape({
+    latitude: React.PropTypes.number,
+    longitude: React.PropTypes.number,
+  }),
+  myLocation: React.PropTypes.shape({
+    latitude: React.PropTypes.number,
+    longitude: React.PropTypes.number,
+    longitudeDelta: React.PropTypes.number,
+    latitudeDelta: React.PropTypes.number,
+  }),
   updateMyPosition: React.PropTypes.func,
   updateRegion: React.PropTypes.func,
   tapOnSpot: React.PropTypes.func,
+  tappedSpot: React.PropTypes.shape({
+    name: React.PropTypes.string,
+    promo: React.PropTypes.string,
+    description: React.PropTypes.string,
+    position: React.PropTypes.string,
+    behind: React.PropTypes.string,
+    behind_image: React.PropTypes.string,
+    image: React.PropTypes.string,
+  }),
 };
 
 MainMap.defaultProps = {
@@ -152,6 +122,15 @@ MainMap.defaultProps = {
   updateMyPosition: () => {},
   updateRegion: () => {},
   tapOnSpot: () => {},
+  tappedSpot: {
+    name: '',
+    promo: '',
+    description: '',
+    position: '',
+    behind: '',
+    behind_image: '',
+    image: '',
+  },
 };
 
 const mapStateToProps = ({ spotsReducer, mapReducer, routerReducer }) => {

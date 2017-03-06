@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, StyleSheet } from 'react-native';
 
-const styles = {
+const styles = StyleSheet.create({
   spinnerStyle: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-};
+});
 
 const Spinner = ({ size }) =>
   (

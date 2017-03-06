@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ListView, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, Image, ListView, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { Spinner } from '../common';
 import { tapOnSpot } from '../../actions';
 
-const styles = {
+const styles = StyleSheet.create({
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red',
   },
-};
+});
 
 class SpotsList extends Component {
 
@@ -86,10 +86,12 @@ SpotsList.propTypes = {
   items: React.PropTypes.arrayOf(React.PropTypes.object),
   dataLoaded: React.PropTypes.bool.isRequired,
   error: React.PropTypes.string.isRequired,
+  tapOnSpot: React.PropTypes.func,
 };
 
 SpotsList.defaultProps = {
   items: [],
+  tapOnSpot: () => {},
 };
 
 const mapStateToProps = ({ spotsReducer }) => {

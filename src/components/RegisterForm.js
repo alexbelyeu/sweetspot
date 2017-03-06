@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { usernameCreated, emailCreated, passwordCreated, registerUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
-const styles = {
+const styles = StyleSheet.create({
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red',
   },
-};
+});
 
 class RegisterForm extends Component {
 
