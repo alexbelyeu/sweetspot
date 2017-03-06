@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import { Actions } from 'react-native-router-flux';
 import { Text, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 
 class SpotDetail extends Component {
-
-  componentWillMount() {
-    Actions.refresh({ title: this.props.tappedSpot.name });
-  }
 
   render() {
     return (

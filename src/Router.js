@@ -4,11 +4,9 @@ import { connect } from 'react-redux';
 import Initial from './components/Initial';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
-import MainMap from './components/map/MainMap';
-import SpotsList from './components/spots/SpotsList';
-import SpotDetail from './components/spots/SpotDetail';
 import { Spinner } from './components/common';
 import { logOut } from './actions';
+import Main from './components/Main';
 
 
 class RouterComponent extends React.Component {
@@ -43,12 +41,10 @@ class RouterComponent extends React.Component {
       <Router sceneStyle={{ paddingTop: 65 }}>
         <Scene key="main" initial>
           <Scene
-            onRight={() => Actions.spotsList()}
-            rightTitle="Spots"
             onLeft={onLogOut}
             leftTitle="Logout"
-            key="mainMap"
-            component={MainMap}
+            key="map"
+            component={Main}
             title="SweetSpot"
             panHandlers={null}
             initial
@@ -62,8 +58,6 @@ class RouterComponent extends React.Component {
         />
         <Scene key="login" component={LoginForm} title="Please Login" />
         <Scene key="register" component={RegisterForm} title="Registration" />
-        <Scene key="spotsList" component={SpotsList} title="Cerca de ti" />
-        <Scene key="spotDetail" component={SpotDetail} title="Sweet Spot" />
       </Router>
     );
   }
