@@ -28,8 +28,8 @@ Sweetspot is an app that aims to provide the best way to find the best deals tha
 ~~~
 
 ## Setup ##
-* `git clone git@bitbucket.org:sweetspotappio/SweetSpot.git`
-* `cd app`
+* `git clone git@bitbucket.org:sweetspotappio/sweetspot.git`
+* `cd sweetspot/`
 * (If this is your first time developing with `npm` and/or React Native, following the instructions [here](https://facebook.github.io/react-native/docs/getting-started.html) to get started, then come back)
 * `npm install`
 * Assuming you already installed XCode: `react-native run-ios`
