@@ -2,11 +2,10 @@ import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Initial from './components/Initial';
-import LoginForm from './components/LoginForm';
-import RegisterForm from './components/RegisterForm';
 import { Spinner } from './components/common';
 import { logOut } from './actions';
 import Main from './components/Main';
+import Landing from './components/Landing';
 
 
 class RouterComponent extends React.Component {
@@ -56,8 +55,11 @@ class RouterComponent extends React.Component {
           title="SweetSpot"
           initial={!this.state.isUserLoggedIn}
         />
-        <Scene key="login" component={LoginForm} title="Please Login" />
-        <Scene key="register" component={RegisterForm} title="Registration" />
+        <Scene
+          key="register_login"
+          component={Landing}
+          title="SweetSpot"
+        />
       </Router>
     );
   }

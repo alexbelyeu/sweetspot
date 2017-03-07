@@ -5,6 +5,7 @@ import spotsReducer from './SpotsReducer';
 import mapReducer from './MapReducer';
 import routerReducer from './RouterReducer';
 import mainReducer from './MainReducer';
+import landingReducer from './LandingReducer';
 
 export default combineReducers({
   loginReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   mapReducer,
   routerReducer,
   mainReducer,
+  landingReducer,
 });

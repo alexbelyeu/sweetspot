@@ -1,3 +1,6 @@
+// Landing actions
+export const CHANGE_LANDING_TAB = 'change_landing_tab';
+
 // Login actions
 export const USERNAME_CHANGED = 'username_changed';
 export const PASSWORD_CHANGED = 'password_changed';
