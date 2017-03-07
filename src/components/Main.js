@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 import MainMap from './map/MainMap';
 import SpotsList from './spots/SpotsList';
 import SpotDetail from './spots/SpotDetail';
+import { switchTab } from '../actions';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,17 +21,8 @@ const styles = StyleSheet.create({
 
 class Main extends Component {
 
-  state = {  // TODO Store in Redux
-    index: 0,
-    routes: [
-      { key: '1', title: 'MapIcon' },
-      { key: '2', title: 'ListIcon' },
-      { key: '3', title: 'SpotIcon' },
-    ],
-  };
-
   _handleChangeTab = (index) => {
-    this.setState({ index });
+    this.props.switchTab(index);
   };
 
   _renderFooter = (props) => {
@@ -53,7 +46,7 @@ class Main extends Component {
     return (
       <TabViewAnimated
         style={styles.container}
-        navigationState={this.state}
+        navigationState={this.props.state}
         renderScene={this._renderScene}
         renderFooter={this._renderFooter}
         onRequestChangeTab={this._handleChangeTab}
@@ -62,4 +55,8 @@ class Main extends Component {
   }
 }
 
-export default Main;
+const mapStateToProps = ({ mainReducer, mapReducer }) => {
+  return {state: mainReducer}
+};
+
+export default connect(mapStateToProps, { switchTab })(Main);

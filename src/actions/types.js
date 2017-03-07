@@ -29,3 +29,6 @@ export const TAP_ON_SPOT = 'tap_on_spot';
 
 // Router actions
 export const LOGOUT = 'logout';
+
+// Main actions
+export const CHANGE_MAIN_TAB = 'change_main_tab';

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableWithoutFeedback, Image, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
-import { tapOnSpot } from '../../actions';
+import { tapOnSpot, switchTab } from '../../actions';
 
 const styles = StyleSheet.create({
   bubble: {
@@ -21,7 +20,7 @@ class SpotPreview extends Component {
 
   spotPressed(spot) {
     this.props.tapOnSpot(spot);
-    Actions.spotDetail();
+    this.props.switchTab(2);  // TODO remove hardcoded index
   }
 
   render() {
@@ -65,6 +64,7 @@ SpotPreview.propTypes = {
     image: React.PropTypes.string,
   }),
   tapOnSpot: React.PropTypes.func,
+  switchTab: React.PropTypes.func,
 };
 
 SpotPreview.defaultProps = {
@@ -79,6 +79,7 @@ SpotPreview.defaultProps = {
     image: '',
   },
   tapOnSpot: () => {},
+  switchTab: () => {},
 };
 
 const mapStateToProps = ({ mapReducer }) => {
@@ -86,4 +87,4 @@ const mapStateToProps = ({ mapReducer }) => {
   return { tappedSpot, region };
 };
 
-export default connect(mapStateToProps, { tapOnSpot })(SpotPreview);
+export default connect(mapStateToProps, { tapOnSpot, switchTab })(SpotPreview);
