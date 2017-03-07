@@ -14,7 +14,6 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CHANGE_LANDING_TAB:
-      console.log(action);
       return { ...state, index: action.payload };
     case REHYDRATE: {
       const incoming = action.payload.spots;
