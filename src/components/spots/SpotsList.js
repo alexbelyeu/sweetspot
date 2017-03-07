@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Image, ListView, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { Spinner } from '../common';
-import { tapOnSpot, switchTab } from '../../actions';
+import { tapOnSpot, switchMainTab } from '../../actions';
 
 const styles = StyleSheet.create({
   errorTextStyle: {
@@ -40,7 +40,7 @@ class SpotsList extends Component {
 
   rowPressed(spot) {
     this.props.tapOnSpot(spot);
-    this.props.switchTab(2);  // TODO remove hardcoded index
+    this.props.switchMainTab(2);  // TODO remove hardcoded index
   }
 
   render() {
@@ -86,13 +86,13 @@ SpotsList.propTypes = {
   dataLoaded: React.PropTypes.bool.isRequired,
   error: React.PropTypes.string.isRequired,
   tapOnSpot: React.PropTypes.func,
-  switchTab: React.PropTypes.func,
+  switchMainTab: React.PropTypes.func,
 };
 
 SpotsList.defaultProps = {
   items: [],
   tapOnSpot: () => {},
-  switchTab: () => {},
+  switchMainTab: () => {},
 };
 
 const mapStateToProps = ({ spotsReducer }) => {
@@ -100,4 +100,4 @@ const mapStateToProps = ({ spotsReducer }) => {
   return { items, dataLoaded, error };
 };
 
-export default connect(mapStateToProps, { tapOnSpot, switchTab })(SpotsList);
+export default connect(mapStateToProps, { tapOnSpot, switchMainTab })(SpotsList);

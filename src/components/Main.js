@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import MainMap from './map/MainMap';
 import SpotsList from './spots/SpotsList';
 import SpotDetail from './spots/SpotDetail';
-import { switchTab } from '../actions';
+import { switchMainTab } from '../actions';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 class Main extends Component {
 
   _handleChangeTab = (index) => {
-    this.props.switchTab(index);
+    this.props.switchMainTab(index);
   };
 
   _renderFooter = (props) => {
@@ -55,8 +55,8 @@ class Main extends Component {
   }
 }
 
-const mapStateToProps = ({ mainReducer, mapReducer }) => {
+const mapStateToProps = ({ mainReducer }) => {
   return {state: mainReducer}
 };
 
-export default connect(mapStateToProps, { switchTab })(Main);
+export default connect(mapStateToProps, { switchMainTab })(Main);
