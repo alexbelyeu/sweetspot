@@ -15,6 +15,8 @@ const LONGITUDE = -3.1216;
 const LATITUDE_DELTA = 9.22; // TODO Set depending on bars around
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
+const DEFAULT_IMAGE = 'https://facebook.github.io/react/img/logo_og.png';  // TODO change with ours
+
 const INITIAL_STATE = {
   region: {
     latitude: LATITUDE,
@@ -26,7 +28,15 @@ const INITIAL_STATE = {
     latitude: LATITUDE,
     longitude: LONGITUDE,
   },
-  tappedSpot: null,
+  tappedSpot: {
+    name: null,
+    promo: '',
+    description: '',
+    position: '',
+    behind: '',
+    behind_image: DEFAULT_IMAGE,
+    image: DEFAULT_IMAGE,
+  },
 };
 
 export default (state = INITIAL_STATE, action) => {

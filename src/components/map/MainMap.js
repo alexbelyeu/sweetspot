@@ -79,7 +79,7 @@ class MainMap extends React.Component {
             pinColor="blue"
           />
         </MapView>
-        {this.props.tappedSpot && <SpotPreview /> }
+        {this.props.tappedSpot.name && <SpotPreview /> }
       </View>
     );
   }
