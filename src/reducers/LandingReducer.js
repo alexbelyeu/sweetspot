@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   index: 0,
   routes: [
     { key: '1', title: 'Login' },
-    { key: '2', title: 'SignUp' },
+    { key: '2', title: 'Register' },
   ],
 };
 
