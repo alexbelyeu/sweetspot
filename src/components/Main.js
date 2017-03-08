@@ -19,36 +19,36 @@ const styles = StyleSheet.create({
 });
 
 class Main extends Component {
-  handleChangeTab(index) {
-    console.log(this.props);
+  _handleChangeTab = (index) => {
     this.props.switchMainTab(index);
   }
 
-  render() {
-    const renderFooter = (props) => {
-      return <TabBar {...props} />;
-    };
+  _renderFooter = (props) => {
+    return <TabBar {...props} />;
+  };
 
-    const renderScene = ({ route }) => {
-      console.log(route);
-      switch (route.key) {
-        case '1':
-          return <MainMap />;
-        case '2':
-          return <SpotsList />;
-        case '3':
-          return <SpotDetail />;
-        default:
-          return null;
-      }
-    };
+  _renderScene = ({ route }) => {
+    switch (route.key) {
+      case '1':
+        return <MainMap />;
+      case '2':
+        return <SpotsList />;
+      case '3':
+        return <SpotDetail />;
+      default:
+        return null;
+    }
+  };
+
+  render() {
+
     return (
       <TabViewAnimated
         style={styles.container}
         navigationState={this.props.state}
-        renderScene={renderScene}
-        renderFooter={renderFooter}
-        onRequestChangeTab={this.handleChangeTab}
+        renderScene={this._renderScene}
+        renderFooter={this._renderFooter}
+        onRequestChangeTab={this._handleChangeTab}
       />
     );
   }
