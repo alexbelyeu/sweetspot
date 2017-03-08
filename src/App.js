@@ -22,11 +22,11 @@ class App extends Component {
 
     persistStore(store, { storage: AsyncStorage });
     // purgeStoredState purges all state in the app. Comment out if not needed.
-    purgeStoredState({ storage: AsyncStorage }).then(() => {
-      console.log('purge of all states completed');
-    }).catch(() => {
-      console.log('purge of all states failed');
-    });
+    // purgeStoredState({ storage: AsyncStorage }).then(() => {
+    //   console.log('purge of all states completed');
+    // }).catch(() => {
+    //   console.log('purge of all states failed');
+    // });
 
     return (
       <Provider store={store}>
