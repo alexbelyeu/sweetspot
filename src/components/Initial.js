@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { CardSection, Button } from './common';
 import { switchLandingTab } from '../actions';
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -16,16 +15,21 @@ const styles = StyleSheet.create({
 
 
 class Initial extends Component {
+  constructor() {
+    super();
+    this.onPressLogin = this.onPressLogin.bind(this);
+    this.onPressRegister = this.onPressRegister.bind(this);
+  }
 
-  onPressLogin = () => {
+  onPressLogin() {
     this.props.switchLandingTab(0);  // TODO remove hardcoded values
     Actions.register_login();
-  };
+  }
 
-  onPressRegister = () => {
+  onPressRegister() {
     this.props.switchLandingTab(1);  // TODO remove hardcoded values
     Actions.register_login();
-  };
+  }
 
   render() {
     return (
@@ -38,5 +42,13 @@ class Initial extends Component {
     );
   }
 }
+
+Initial.propTypes = {
+  switchLandingTab: React.PropTypes.func,
+};
+
+Initial.defaultProps = {
+  switchLandingTab: () => {},
+};
 
 export default connect(null, { switchLandingTab })(Initial);

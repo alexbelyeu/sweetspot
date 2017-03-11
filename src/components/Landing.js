@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
-import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
@@ -19,41 +18,58 @@ const styles = StyleSheet.create({
 });
 
 class Landing extends Component {
+  constructor() {
+    super();
+    this.handleChangeTab = this.handleChangeTab.bind(this);
+  }
 
-  _handleChangeTab = (index) => {
+  handleChangeTab(index) {
     this.props.switchLandingTab(index);
-  };
+  }
 
-  _renderHeader = (props) => {
-    return <TabBar {...props} />;
-  };
-
-  _renderScene = ({ route }) => {
-    switch (route.key) {
-    case '1':
-      return <LoginForm />;
-    case '2':
-      return <RegisterForm />;
-    default:
-      return null;
-    }
-  };
 
   render() {
+    const renderHeader = (props) => {
+      return <TabBar {...props} />;
+    };
+    const renderScene = ({ route }) => {
+      switch (route.key) {
+        case '1':
+          return <LoginForm />;
+        case '2':
+          return <RegisterForm />;
+        default:
+          return null;
+      }
+    };
+
     return (
       <TabViewAnimated
         style={styles.container}
         navigationState={this.props.state}
-        renderScene={this._renderScene}
-        renderFooter={this._renderHeader}
-        onRequestChangeTab={this._handleChangeTab}
+        renderScene={renderScene}
+        renderFooter={renderHeader}
+        onRequestChangeTab={this.handleChangeTab}
       />
     );
   }
 }
 
+Landing.propTypes = {
+  switchLandingTab: React.PropTypes.func,
+  state: React.PropTypes.shape({
+    index: React.PropTypes.number,
+    routes: React.PropTypes.arrayOf(React.PropTypes.object),
+  }),
+};
+
+Landing.defaultProps = {
+  switchLandingTab: () => {},
+  state: null,
+};
+
 const mapStateToProps = ({ landingReducer }) => {
-  return {state: landingReducer}
+  return { state: landingReducer };
 };
 
 export default connect(mapStateToProps, { switchLandingTab })(Landing);
