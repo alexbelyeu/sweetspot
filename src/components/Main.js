@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
-import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import MainMap from './map/MainMap';
-import SpotsList from './spots/SpotsList';
 import SpotDetail from './spots/SpotDetail';
+import SpotsList from './spots/SpotsList';
 import { switchMainTab } from '../actions';
 
 const styles = StyleSheet.create({
@@ -20,43 +19,59 @@ const styles = StyleSheet.create({
 });
 
 class Main extends Component {
-
-  _handleChangeTab = (index) => {
+  constructor() {
+    super();
+    this.handleChangeTab = this.handleChangeTab.bind(this);
+  }
+  handleChangeTab(index) {
     this.props.switchMainTab(index);
-  };
-
-  _renderFooter = (props) => {
-    return <TabBar {...props} />;
-  };
-
-  _renderScene = ({ route }) => {
-    switch (route.key) {
-    case '1':
-      return <MainMap />;
-    case '2':
-      return <SpotsList />;
-    case '3':
-      return <SpotDetail />;
-    default:
-      return null;
-    }
-  };
+  }
 
   render() {
+    const renderFooter = (props) => {
+      return <TabBar {...props} />;
+    };
+
+    const renderScene = ({ route }) => {
+      switch (route.key) {
+        case '1':
+          return <SpotsList />;
+        case '2':
+          return <MainMap />;
+        case '3':
+          return <SpotDetail />;
+        default:
+          return null;
+      }
+    };
     return (
       <TabViewAnimated
         style={styles.container}
         navigationState={this.props.state}
-        renderScene={this._renderScene}
-        renderFooter={this._renderFooter}
-        onRequestChangeTab={this._handleChangeTab}
+        renderScene={renderScene}
+        renderFooter={renderFooter}
+        onRequestChangeTab={this.handleChangeTab}
       />
     );
   }
 }
 
+Main.propTypes = {
+  switchMainTab: React.PropTypes.func,
+  state: React.PropTypes.shape({
+    index: React.PropTypes.number,
+    routes: React.PropTypes.arrayOf(React.PropTypes.object),
+  }),
+};
+
+Main.defaultProps = {
+  switchMainTab: () => {},
+  state: null,
+};
+
+
 const mapStateToProps = ({ mainReducer }) => {
-  return {state: mainReducer}
+  return { state: mainReducer };
 };
 
 export default connect(mapStateToProps, { switchMainTab })(Main);

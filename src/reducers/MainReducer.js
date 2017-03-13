@@ -4,10 +4,10 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  index: 0,
+  index: 1,
   routes: [
-    { key: '1', title: 'MapIcon' },
-    { key: '2', title: 'ListIcon' },
+    { key: '1', title: 'ListIcon' },
+    { key: '2', title: 'MapIcon' },
     { key: '3', title: 'SpotIcon' },
   ],
 };

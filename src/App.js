@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { compose, createStore, applyMiddleware } from 'redux';
-import { persistStore, autoRehydrate } from 'redux-persist';
+import { persistStore, purgeStoredState, autoRehydrate } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
 import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
@@ -21,6 +21,12 @@ class App extends Component {
     );
 
     persistStore(store, { storage: AsyncStorage });
+    // purgeStoredState purges all state in the app. Comment out if not needed.
+    // purgeStoredState({ storage: AsyncStorage }).then(() => {
+    //   console.log('purge of all states completed');
+    // }).catch(() => {
+    //   console.log('purge of all states failed');
+    // });
 
     return (
       <Provider store={store}>

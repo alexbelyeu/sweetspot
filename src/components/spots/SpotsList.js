@@ -23,12 +23,6 @@ class SpotsList extends Component {
     };
   }
 
-  componentWillMount() {
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this.props.items),
-    });
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.items !== this.props.items && nextProps.items.length !== 0) {
       this.setState({
