@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import { loadSpots, updateMyPosition, updateRegion, tapOnSpot } from '../../actions';
 import SpotPreview from './SpotPreview';
+import mapStyle from './mapStyle.json';
 
 const styles = StyleSheet.create({
   container: {
@@ -60,6 +61,7 @@ class MainMap extends React.Component {
           provider={MapView.PROVIDER_GOOGLE}
           ref={(ref) => { this.map = ref; }}
           mapType={MAP_TYPES.standard}
+          customMapStyle={mapStyle}
           style={styles.map}
           initialRegion={this.props.region}
           onRegionChange={region => this.onRegionChange(region)}

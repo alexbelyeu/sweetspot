@@ -6,9 +6,9 @@ import {
 const INITIAL_STATE = {
   index: 1,
   routes: [
-    { key: '1', title: 'ListIcon' },
-    { key: '2', title: 'MapIcon' },
-    { key: '3', title: 'SpotIcon' },
+    { key: '1', icon: 'list' },
+    { key: '2', icon: 'logo' },
+    { key: '3', icon: 'saved' },
   ],
 };
 

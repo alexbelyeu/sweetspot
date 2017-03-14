@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { Animated, StyleSheet } from 'react-native';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import { connect } from 'react-redux';
+import { createIconSetFromFontello } from 'react-native-vector-icons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import MainMap from './map/MainMap';
 import SpotDetail from './spots/SpotDetail';
 import SpotsList from './spots/SpotsList';
 import { switchMainTab } from '../actions';
+import config from '../assets/fonts/fontello/config.json';
+
+const Logo = createIconSetFromFontello(config, 'fontello');
+const AnimatedLogo = Animated.createAnimatedComponent(Logo);
+const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
   page: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  tabStyle: {
+    backgroundColor: '#f7f7f7',
+    height: 50,
+    shadowOpacity: 0.9,
+  },
+  indicator: {
+    backgroundColor: '#0093f3',
   },
 });
 
@@ -28,8 +44,34 @@ class Main extends Component {
   }
 
   render() {
+    const renderIcon = props => ({ route, index }) => {
+      const inputRange = props.navigationState.routes.map((x, i) => i);
+      const outputRange = inputRange.map((inputIndex) => { return inputIndex === index ? '#0093f3' : 'black'; });
+      const color = props.position.interpolate({
+        inputRange,
+        outputRange,
+      });
+      switch (route.key) {
+        case '1':
+          return <AnimatedIcon name={'ios-list'} size={32} style={{ color }} />;
+        case '2':
+          return <AnimatedLogo src={'logo'} name={'logo'} size={32} style={{ color }} />;
+        case '3':
+          return <AnimatedIcon name={'ios-bookmark'} size={26} style={{ color }} />;
+        default:
+          return null;
+      }
+    };
+
     const renderFooter = (props) => {
-      return <TabBar {...props} />;
+      return (
+        <TabBar
+          {...props}
+          renderIcon={renderIcon(props)}
+          style={styles.tabStyle}
+          indicatorStyle={styles.indicator}
+        />
+      );
     };
 
     const renderScene = ({ route }) => {
