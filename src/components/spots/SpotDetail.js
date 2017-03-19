@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
 class SpotDetail extends Component {
-
   render() {
+    // TODO move Actions.pop to x button.
     return (
       <View>
         <Image
           style={{ width: 200, height: 100 }}
           source={{ uri: this.props.tappedSpot.image }}
         />
-        <Text> {this.props.tappedSpot.name} </Text>
+        <Text onPress={Actions.pop}> {this.props.tappedSpot.name} </Text>
         <Text> {this.props.tappedSpot.promo} </Text>
         <Text> {this.props.tappedSpot.description} </Text>
         <Text> {this.props.tappedSpot.position} </Text>

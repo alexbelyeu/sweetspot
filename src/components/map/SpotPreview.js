@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableWithoutFeedback, Image, StyleSheet } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { tapOnSpot, switchMainTab } from '../../actions';
 
@@ -10,25 +11,21 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: 20,
   },
-  latlng: {  // TODO delete
-    width: 200,
-    alignItems: 'stretch',
-  },
 });
 
 class SpotPreview extends Component {
 
-  spotPressed(spot) {
+  previewPressed(spot) {
     this.props.tapOnSpot(spot);
-    this.props.switchMainTab(2);  // TODO remove hardcoded index
+    Actions.spotdetail();
   }
 
   render() {
     return (
       <TouchableWithoutFeedback
-        onPress={() => this.spotPressed(this.props.tappedSpot)}
+        onPress={() => this.previewPressed(this.props.tappedSpot)}
       >
-        <View style={[styles.bubble, styles.latlng]}>
+        <View style={styles.bubble}>
           <Text style={{ textAlign: 'center' }}>
             {this.props.tappedSpot.name}
           </Text>
@@ -39,10 +36,6 @@ class SpotPreview extends Component {
             style={{ width: 50, height: 50 }}
             source={{ uri: this.props.tappedSpot.image }}
           />
-          <Text style={{ textAlign: 'center' }}>
-            {this.props.region.latitude.toPrecision(7)},
-            {this.props.region.longitude.toPrecision(7)}
-          </Text>
         </View>
       </TouchableWithoutFeedback>
     );

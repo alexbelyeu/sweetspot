@@ -6,6 +6,7 @@ import { Spinner } from './components/common';
 import { logOut } from './actions';
 import Main from './components/Main';
 import Landing from './components/Landing';
+import SpotDetail from './components/spots/SpotDetail';
 
 
 class RouterComponent extends React.Component {
@@ -37,8 +38,8 @@ class RouterComponent extends React.Component {
       );
     }
     return (
-      <Router sceneStyle={{ paddingTop: 65 }}>
-        <Scene key="main" initial>
+      <Router>
+        <Scene key="main" sceneStyle={{ paddingTop: 65 }} initial>
           <Scene
             onLeft={onLogOut}
             leftTitle="Logout"
@@ -48,14 +49,22 @@ class RouterComponent extends React.Component {
             panHandlers={null}
             initial
           />
+          <Scene
+            key="spotdetail"
+            component={SpotDetail}
+            hideNavBar
+            direction="vertical"
+          />
         </Scene>
         <Scene
+          hideNavBar
           key="initial"
           component={Initial}
           title="SweetSpot"
           initial={!this.state.isUserLoggedIn}
         />
         <Scene
+          hideNavBar
           key="register_login"
           component={Landing}
           title="SweetSpot"

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class MainMap extends React.Component {
+class Map extends React.Component {
 
   componentDidMount() {
     this.props.loadSpots(this.props.tokenRouter);
@@ -81,13 +81,13 @@ class MainMap extends React.Component {
             pinColor="blue"
           />
         </MapView>
-        {this.props.tappedSpot.name && <SpotPreview /> }
+        {this.props.tappedSpot.isSelected && <SpotPreview /> }
       </View>
     );
   }
 }
 
-MainMap.propTypes = {
+Map.propTypes = {
   loadSpots: React.PropTypes.func,
   tokenRouter: React.PropTypes.string,
   items: React.PropTypes.arrayOf(React.PropTypes.object),
@@ -112,10 +112,11 @@ MainMap.propTypes = {
     behind: React.PropTypes.string,
     behind_image: React.PropTypes.string,
     image: React.PropTypes.string,
+    isSelected: React.PropTypes.bool,
   }),
 };
 
-MainMap.defaultProps = {
+Map.defaultProps = {
   items: [],
   tokenRouter: '',
   region: {},
@@ -132,6 +133,7 @@ MainMap.defaultProps = {
     behind: '',
     behind_image: '',
     image: '',
+    isSelected: false,
   },
 };
 
@@ -144,4 +146,4 @@ const mapStateToProps = ({ spotsReducer, mapReducer, routerReducer }) => {
 
 export default connect(mapStateToProps, {
   loadSpots, updateMyPosition, updateRegion, tapOnSpot,
-})(MainMap);
+})(Map);

@@ -4,7 +4,7 @@ import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import { connect } from 'react-redux';
 import { createIconSetFromFontello } from 'react-native-vector-icons';
 import Icon from 'react-native-vector-icons/Ionicons';
-import MainMap from './map/MainMap';
+import Map from './map/Map';
 import SpotDetail from './spots/SpotDetail';
 import SpotsList from './spots/SpotsList';
 import { switchMainTab } from '../actions';
@@ -29,9 +29,6 @@ const styles = StyleSheet.create({
     height: 50,
     shadowOpacity: 0.9,
   },
-  indicator: {
-    backgroundColor: '#0093f3',
-  },
 });
 
 class Main extends Component {
@@ -52,11 +49,11 @@ class Main extends Component {
         outputRange,
       });
       switch (route.key) {
-        case '1':
+        case '0':
           return <AnimatedIcon name={'ios-list'} size={32} style={{ color }} />;
-        case '2':
+        case '1':
           return <AnimatedLogo src={'logo'} name={'logo'} size={32} style={{ color }} />;
-        case '3':
+        case '2':
           return <AnimatedIcon name={'ios-bookmark'} size={26} style={{ color }} />;
         default:
           return null;
@@ -69,18 +66,18 @@ class Main extends Component {
           {...props}
           renderIcon={renderIcon(props)}
           style={styles.tabStyle}
-          indicatorStyle={styles.indicator}
+          renderIndicator={() => null}
         />
       );
     };
 
     const renderScene = ({ route }) => {
       switch (route.key) {
-        case '1':
+        case '0':
           return <SpotsList />;
+        case '1':
+          return <Map />;
         case '2':
-          return <MainMap />;
-        case '3':
           return <SpotDetail />;
         default:
           return null;

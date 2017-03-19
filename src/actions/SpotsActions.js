@@ -39,7 +39,7 @@ export const loadSpots = (token) => {
           if (response.detail) {
             loadSpotsError(dispatch, response.detail);
           } else {
-            response.forEach(function(spot) {
+            response.forEach((spot) => {
               spot.latlng = {
                 latitude: parseFloat(spot.position.split(',')[0], 10),
                 longitude: parseFloat(spot.position.split(',')[1], 10) };

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, ListView, TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { Spinner } from '../common';
 import { tapOnSpot, switchMainTab } from '../../actions';
@@ -34,7 +35,7 @@ class SpotsList extends Component {
 
   rowPressed(spot) {
     this.props.tapOnSpot(spot);
-    this.props.switchMainTab(2);  // TODO remove hardcoded index
+    Actions.spotdetail();
   }
 
   render() {
