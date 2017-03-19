@@ -32,6 +32,8 @@ export const TAP_ON_SPOT = 'tap_on_spot';
 
 // Router actions
 export const LOGOUT = 'logout';
+export const USER_LOGGED_IN = 'user_logged_in';
+export const RESOLVE_USER = 'resolve_user';
 
 // Main actions
 export const CHANGE_MAIN_TAB = 'change_main_tab';

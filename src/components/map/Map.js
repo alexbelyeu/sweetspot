@@ -118,7 +118,7 @@ Map.propTypes = {
 
 Map.defaultProps = {
   items: [],
-  tokenRouter: '',
+  tokenRouter: 'noToken',
   region: {},
   myLocation: {},
   loadSpots: () => {},
