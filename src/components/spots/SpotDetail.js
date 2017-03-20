@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 20,
+  },
+});
 
 class SpotDetail extends Component {
   render() {
     // TODO move Actions.pop to x button.
     return (
-      <View>
+      <View style={styles.container}>
         <Image
           style={{ width: 200, height: 100 }}
           source={{ uri: this.props.tappedSpot.image }}

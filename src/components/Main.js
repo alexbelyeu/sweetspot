@@ -74,11 +74,11 @@ class Main extends Component {
     const renderScene = ({ route }) => {
       switch (route.key) {
         case '0':
-          return <SpotsList />;
+          return <SpotsList list="around" />;
         case '1':
           return <Map />;
         case '2':
-          return <SpotDetail />;
+          return <SpotsList list="saved" />;
         default:
           return null;
       }

@@ -1,6 +1,8 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { SweetText } from './SweetText';
 
+const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   textStyle: {
     alignSelf: 'center',
@@ -11,40 +13,52 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   buttonStyle: {
-    flex: 1,
-    alignSelf: 'stretch',
-    backgroundColor: '#fff',
-    borderRadius: 5,
+    width: 0.8 * width,
     borderWidth: 1,
     borderColor: '#007aff',
-    marginLeft: 5,
-    marginRight: 5,
+    margin: 5,
+  },
+  blueButtonText: {
+    color: 'white',
+  },
+  blueButtonBackground: {
+    backgroundColor: '#007aff',
   },
 });
 
-const { buttonStyle, textStyle } = styles;
+const { blueButtonText, blueButtonBackground, buttonStyle, textStyle } = styles;
 
-const Button = ({ onPress, children }) => {
+const Button = (props) => {
   return (
-    <TouchableOpacity onPress={onPress} style={buttonStyle}>
-      <Text style={textStyle}>
-        {children}
-      </Text>
+    <TouchableOpacity
+      onPress={props.onPress}
+      style={[buttonStyle, props.style, props.blue && blueButtonBackground]}
+    >
+      <SweetText style={[textStyle, props.style, props.blue && blueButtonText]}>
+        {props.children}
+      </SweetText>
     </TouchableOpacity>
   );
 };
 
 Button.propTypes = {
-  onPress: React.PropTypes.func,
   children: React.PropTypes.oneOfType([
+    React.PropTypes.arrayOf(React.PropTypes.node),
+    React.PropTypes.node,
+  ]),
+  blue: React.PropTypes.bool,
+  onPress: React.PropTypes.func,
+  style: React.PropTypes.oneOfType([
     React.PropTypes.arrayOf(React.PropTypes.node),
     React.PropTypes.node,
   ]),
 };
 
 Button.getDefaultProps = {
-  onPress: () => {},
   children: null,
+  blue: false,
+  onPress: () => {},
+  style: null,
 };
 
 export { Button };

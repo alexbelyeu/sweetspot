@@ -1,22 +1,41 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { usernameCreated, emailCreated, passwordCreated, registerUser } from '../actions';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { SweetText, Input, Button, Spinner } from './common';
 
+const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 0.1 * height,
+    marginHorizontal: 0.1 * width,
+  },
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
-    color: 'red',
+    color: 'crimson',
+  },
+  usernameStyle: {
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+  },
+  passwordStyle: {
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+    marginBottom: 0.1 * height,
+  },
+  button: {
+    borderRadius: 5,
   },
 });
 
 class RegisterForm extends Component {
-
   constructor() {
     super();
-
     this.onUsernameCreation = this.onUsernameCreation.bind(this);
     this.onEmailCreation = this.onEmailCreation.bind(this);
     this.onPasswordCreation = this.onPasswordCreation.bind(this);
@@ -46,7 +65,7 @@ class RegisterForm extends Component {
     }
 
     return (
-      <Button onPress={this.onButtonPress}>
+      <Button blue style={styles.button} onPress={this.onButtonPress}>
         Register
       </Button>
     );
@@ -54,51 +73,42 @@ class RegisterForm extends Component {
 
   render() {
     return (
-      <Card>
-        <CardSection>
-          <Input
-            autoCapitalize="none"
-            label="Username"
-            placeholder="johndoe"
-            onChangeText={this.onUsernameCreation}
-            value={this.props.username}
-          />
-        </CardSection>
-        <Text style={styles.errorTextStyle}>
+      <View style={styles.container}>
+        <Input
+          autoCapitalize="none"
+          label="ios-at-outline"
+          onChangeText={this.onUsernameCreation}
+          placeholder="USERNAME"
+          style={styles.usernameStyle}
+          value={this.props.username}
+        />
+        <SweetText style={styles.errorTextStyle}>
           {this.props.usernameError}
-        </Text>
-
-        <CardSection>
-          <Input
-            autoCapitalize="none"
-            label="Email"
-            placeholder="email@gmail.com"
-            onChangeText={this.onEmailCreation}
-            value={this.props.email}
-          />
-        </CardSection>
-        <Text style={styles.errorTextStyle}>
+        </SweetText>
+        <Input
+          autoCapitalize="none"
+          label="ios-mail-outline"
+          placeholder="EMAIL"
+          onChangeText={this.onEmailCreation}
+          style={styles.emailStyle}
+          value={this.props.email}
+        />
+        <SweetText style={styles.errorTextStyle}>
           {this.props.emailError}
-        </Text>
-
-        <CardSection>
-          <Input
-            secureTextEntry
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordCreation}
-            value={this.props.password}
-          />
-        </CardSection>
-
-        <Text style={styles.errorTextStyle}>
+        </SweetText>
+        <Input
+          label="ios-lock"
+          onChangeText={this.onPasswordCreation}
+          placeholder="PASSWORD"
+          secureTextEntry
+          style={styles.passwordStyle}
+          value={this.props.password}
+        />
+        <SweetText style={styles.errorTextStyle}>
           {this.props.error}
-        </Text>
-
-        <CardSection>
-          {this.renderButton()}
-        </CardSection>
-      </Card>
+        </SweetText>
+        {this.renderButton()}
+      </View>
     );
   }
 }

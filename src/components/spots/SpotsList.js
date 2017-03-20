@@ -3,13 +3,13 @@ import { View, Text, Image, ListView, TouchableWithoutFeedback, StyleSheet } fro
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { Spinner } from '../common';
-import { tapOnSpot, switchMainTab } from '../../actions';
+import { tapOnSpot } from '../../actions';
 
 const styles = StyleSheet.create({
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
-    color: 'red',
+    color: 'crimson',
   },
 });
 
@@ -81,13 +81,11 @@ SpotsList.propTypes = {
   dataLoaded: React.PropTypes.bool.isRequired,
   error: React.PropTypes.string.isRequired,
   tapOnSpot: React.PropTypes.func,
-  switchMainTab: React.PropTypes.func,
 };
 
 SpotsList.defaultProps = {
   items: [],
   tapOnSpot: () => {},
-  switchMainTab: () => {},
 };
 
 const mapStateToProps = ({ spotsReducer }) => {
@@ -95,4 +93,4 @@ const mapStateToProps = ({ spotsReducer }) => {
   return { items, dataLoaded, error };
 };
 
-export default connect(mapStateToProps, { tapOnSpot, switchMainTab })(SpotsList);
+export default connect(mapStateToProps, { tapOnSpot })(SpotsList);

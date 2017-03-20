@@ -1,22 +1,41 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { usernameChanged, passwordChanged, loginUser } from '../actions';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { SweetText, Input, Button, Spinner } from './common';
 
+const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 0.1 * height,
+    marginHorizontal: 0.1 * width,
+  },
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
-    color: 'red',
+    color: 'crimson',
+  },
+  usernameStyle: {
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+  },
+  passwordStyle: {
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+    marginBottom: 0.2 * height,
+  },
+  button: {
+    borderRadius: 5,
   },
 });
 
 class LoginForm extends Component {
-
   constructor() {
     super();
-
     this.onUsernameChange = this.onUsernameChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onButtonPress = this.onButtonPress.bind(this);
@@ -41,7 +60,7 @@ class LoginForm extends Component {
     }
 
     return (
-      <Button onPress={this.onButtonPress}>
+      <Button blue style={styles.button} onPress={this.onButtonPress}>
         Login
       </Button>
     );
@@ -49,41 +68,34 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <Card>
-        <CardSection>
-          <Input
-            autoCapitalize="none"
-            label="Username"
-            placeholder="alex"
-            onChangeText={this.onUsernameChange}
-            value={this.props.username}
-          />
-        </CardSection>
-        <Text style={styles.errorTextStyle}>
+      <View style={styles.container}>
+        <Input
+          autoCapitalize="none"
+          label="ios-at-outline"
+          onChangeText={this.onUsernameChange}
+          placeholder="USERNAME"
+          style={styles.usernameStyle}
+          value={this.props.username}
+        />
+        <SweetText style={styles.errorTextStyle}>
           {this.props.usernameError}
-        </Text>
-
-        <CardSection>
-          <Input
-            secureTextEntry
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordChange}
-            value={this.props.password}
-          />
-        </CardSection>
-        <Text style={styles.errorTextStyle}>
+        </SweetText>
+        <Input
+          label="ios-lock"
+          onChangeText={this.onPasswordChange}
+          placeholder="PASSWORD"
+          secureTextEntry
+          style={styles.passwordStyle}
+          value={this.props.password}
+        />
+        <SweetText style={styles.errorTextStyle}>
           {this.props.passwordError}
-        </Text>
-
-        <Text style={styles.errorTextStyle}>
+        </SweetText>
+        <SweetText style={styles.errorTextStyle}>
           {this.props.error}
-        </Text>
-
-        <CardSection>
-          {this.renderButton()}
-        </CardSection>
-      </Card>
+        </SweetText>
+        {this.renderButton()}
+      </View>
     );
   }
 }
