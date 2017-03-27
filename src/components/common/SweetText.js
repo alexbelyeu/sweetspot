@@ -4,8 +4,9 @@ import { Text, StyleSheet, Platform } from 'react-native';
 const styles = StyleSheet.create({
   textStyle: {
     fontSize: 16,
-    fontWeight: '600',
-    fontFamily: Platform.OS === 'ios' ? 'Gujarati Sangam MN' : 'Roboto',
+    fontFamily: Platform.OS === 'ios' ? 'AmericanTypewriter' : 'sans-serif',
+    backgroundColor: 'transparent',
+    color: 'darkgray',
   },
 });
 

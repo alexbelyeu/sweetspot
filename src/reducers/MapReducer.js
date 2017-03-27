@@ -12,7 +12,7 @@ const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE = 40.4318;
 const LONGITUDE = -3.7264;
-const LATITUDE_DELTA = 3.5; // TODO Set depending on bars around
+const LATITUDE_DELTA = 0.5; // TODO Set depending on bars around
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const DEFAULT_IMAGE = 'https://facebook.github.io/react/img/logo_og.png';  // TODO change with ours

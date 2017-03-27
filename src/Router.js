@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Initial from './components/Initial';
@@ -7,7 +8,22 @@ import { logOut, resolveUser, userLoggedIn } from './actions';
 import Main from './components/Main';
 import Landing from './components/Landing';
 import SpotDetail from './components/spots/SpotDetail';
+import IMAGOTYPE_BW from './assets/img/imagotype_bw/imagotype_bw.png';
+import USER_OUTLINE from './assets/img/user_outline/user_outline.png';
 
+const styles = StyleSheet.create({
+  navBar: {
+    height: 55,
+    backgroundColor: 'white',
+  },
+  navBarTitleStyle: {
+    resizeMode: 'contain',
+    height: 15,
+  },
+  navBarLeftButtonStyle: {
+    // height: 15,
+  },
+});
 
 class RouterComponent extends React.Component {
   componentWillReceiveProps(nextProps) {
@@ -41,33 +57,36 @@ class RouterComponent extends React.Component {
       <Router>
         <Scene key="main" initial>
           <Scene
-            onLeft={onLogOut}
-            leftTitle="Logout"
-            key="map"
             component={Main}
-            sceneStyle={{ paddingTop: 65 }}
-            title="SweetSpot"
-            panHandlers={null}
             initial
+            key="map"
+            leftButtonImage={USER_OUTLINE}
+            leftButtonStyle={styles.navBarLeftButtonStyle}
+            navigationBarStyle={styles.navBar}
+            navigationBarTitleImage={IMAGOTYPE_BW}
+            navigationBarTitleImageStyle={styles.navBarTitleStyle}
+            onLeft={onLogOut}
+            panHandlers={null}
+            sceneStyle={{ paddingTop: 55 }}
           />
           <Scene
-            key="spotdetail"
             component={SpotDetail}
-            hideNavBar
             direction="vertical"
+            hideNavBar
+            key="spotdetail"
           />
         </Scene>
         <Scene
-          hideNavBar
-          key="initial"
           component={Initial}
-          title="SweetSpot"
+          hideNavBar
           initial={!this.props.isUserLoggedIn}
+          key="initial"
+          title="SweetSpot"
         />
         <Scene
+          component={Landing}
           hideNavBar
           key="register_login"
-          component={Landing}
           title="SweetSpot"
         />
       </Router>

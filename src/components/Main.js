@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { createIconSetFromFontello } from 'react-native-vector-icons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Map from './map/Map';
-import SpotDetail from './spots/SpotDetail';
 import SpotsList from './spots/SpotsList';
 import { switchMainTab } from '../actions';
 import config from '../assets/fonts/fontello/config.json';
@@ -18,11 +17,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-  },
-  page: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   tabStyle: {
     backgroundColor: '#f7f7f7',

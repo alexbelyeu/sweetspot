@@ -6,7 +6,7 @@ import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import { switchLandingTab } from '../actions';
 
-const { height, width } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 const numberOfTabs = 2;
 const styles = StyleSheet.create({
   container: {

@@ -7,7 +7,7 @@ import { switchLandingTab } from '../actions';
 import LOGO from '../assets/img/logo-sweetspot.png';
 import NAME from '../assets/img/name.png';
 
-const { width, height } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
