@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient'; // eslint-disable-line
 import { SweetText } from './SweetText';
 
 const { width } = Dimensions.get('window');
@@ -14,29 +15,40 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     width: 0.8 * width,
-    borderWidth: 1,
-    borderColor: '#007aff',
     margin: 5,
+  },
+  whiteButtonStyle: {
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: '#007aff',
   },
   blueButtonText: {
     color: 'white',
   },
-  blueButtonBackground: {
-    backgroundColor: '#007aff',
+  linearGradientStyle: {
+    borderRadius: 5,
   },
 });
 
-const { blueButtonText, blueButtonBackground, buttonStyle, textStyle } = styles;
+const { blueButtonText, whiteButtonStyle, buttonStyle, linearGradientStyle, textStyle } = styles;
 
 const Button = (props) => {
   return (
     <TouchableOpacity
       onPress={props.onPress}
-      style={[buttonStyle, props.style, props.blue && blueButtonBackground]}
+      style={[buttonStyle, props.style, props.white && whiteButtonStyle]}
     >
-      <SweetText style={[textStyle, props.style, props.blue && blueButtonText]}>
-        {props.children}
-      </SweetText>
+      <LinearGradient
+        start={{ x: 0.0, y: 0.5 }}
+        end={{ x: 1, y: 0.5 }}
+        locations={[0, 0.9]}
+        colors={props.blue ? ['#005bea', '#00c6fb'] : ['#fff', '#fff']}
+        style={[props.style, linearGradientStyle]}
+      >
+        <SweetText style={[textStyle, props.style, props.blue && blueButtonText]}>
+          {props.children}
+        </SweetText>
+      </LinearGradient>
     </TouchableOpacity>
   );
 };
@@ -52,6 +64,7 @@ Button.propTypes = {
     React.PropTypes.arrayOf(React.PropTypes.node),
     React.PropTypes.node,
   ]),
+  white: React.PropTypes.bool,
 };
 
 Button.getDefaultProps = {
@@ -59,6 +72,7 @@ Button.getDefaultProps = {
   blue: false,
   onPress: () => {},
   style: null,
+  white: false,
 };
 
 export { Button };

@@ -66,7 +66,7 @@ class RegisterForm extends Component {
 
     return (
       <Button blue style={styles.button} onPress={this.onButtonPress}>
-        Register
+        REGISTER
       </Button>
     );
   }

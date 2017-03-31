@@ -61,7 +61,7 @@ class LoginForm extends Component {
 
     return (
       <Button blue style={styles.button} onPress={this.onButtonPress}>
-        Login
+        LOGIN
       </Button>
     );
   }

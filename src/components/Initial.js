@@ -29,14 +29,6 @@ const styles = StyleSheet.create({
     color: 'darkgray',
     marginBottom: 0.1 * height,
   },
-  login: {
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
-  },
-  register: {
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5,
-  },
 });
 
 
@@ -63,8 +55,8 @@ class Initial extends Component {
         <Image style={styles.logo} source={LOGO} />
         <Image style={styles.name} source={NAME} />
         <SweetText style={styles.textStyle}>real time leisure</SweetText>
-        <Button blue style={styles.login} onPress={this.onPressLogin}>LOGIN</Button>
-        <Button style={styles.register} onPress={this.onPressRegister}>REGISTER</Button>
+        <Button blue onPress={this.onPressLogin}>LOGIN</Button>
+        <Button white onPress={this.onPressRegister}>REGISTER</Button>
       </View>
     );
   }

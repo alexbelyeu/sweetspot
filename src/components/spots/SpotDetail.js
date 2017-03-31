@@ -1,12 +1,38 @@
 import React, { Component } from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, Dimensions, Platform } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import ParallaxView from 'react-native-parallax-view';
+import { SweetText } from '../common';
 
+const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
+    marginTop: Platform.OS === 'ios' ? 20 : 0,
+  },
+  parallaxViewStyle: {
+    alignItems: 'center',
+  },
+  mainImage: {
+    height: 0.3 * height,
+    alignSelf: 'stretch',
+  },
+  offer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 0.2 * height,
+    width: 0.85 * width,
+    top: -0.1 * height,
+    borderRadius: 5,
+    backgroundColor: 'white',
+  },
+  promo: {
+    fontSize: 20,
+    color: 'gray',
+  },
+  name: {
+    color: 'gray',
   },
 });
 
@@ -15,19 +41,24 @@ class SpotDetail extends Component {
     // TODO move Actions.pop to x button.
     return (
       <View style={styles.container}>
-        <Image
-          style={{ width: 200, height: 100 }}
-          source={{ uri: this.props.tappedSpot.image }}
-        />
-        <Text onPress={Actions.pop}> {this.props.tappedSpot.name} </Text>
-        <Text> {this.props.tappedSpot.promo} </Text>
-        <Text> {this.props.tappedSpot.description} </Text>
-        <Text> {this.props.tappedSpot.position} </Text>
-        <Image
-          style={{ width: 50, height: 50 }}
-          source={{ uri: this.props.tappedSpot.behind_image }}
-        />
-        <Text> {this.props.tappedSpot.behind} </Text>
+        <ParallaxView
+          backgroundSource={{ uri: this.props.tappedSpot.image }}
+          windowHeight={0.3 * height}
+        >
+          <View style={styles.parallaxViewStyle}>
+            <View style={styles.offer}>
+              <SweetText style={styles.promo}> {this.props.tappedSpot.promo} </SweetText>
+              <SweetText style={styles.name}>
+                {this.props.tappedSpot.name}
+              </SweetText>
+            </View>
+            <Image
+              style={{ width: 50, height: 50 }}
+              source={{ uri: this.props.tappedSpot.behind_image }}
+            />
+            <SweetText onPress={Actions.pop}> {this.props.tappedSpot.description} </SweetText>
+          </View>
+        </ParallaxView>
       </View>
     );
   }

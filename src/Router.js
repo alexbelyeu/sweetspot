@@ -74,6 +74,7 @@ class RouterComponent extends React.Component {
             direction="vertical"
             hideNavBar
             key="spotdetail"
+            panHandlers={null}
           />
         </Scene>
         <Scene

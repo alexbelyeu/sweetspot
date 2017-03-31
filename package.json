@@ -9,7 +9,9 @@
   "dependencies": {
     "react": "~15.4.0",
     "react-native": "0.41.2",
+    "react-native-linear-gradient": "^2.0.0",
     "react-native-maps": "^0.13.0",
+    "react-native-parallax-view": "^2.0.6",
     "react-native-router-flux": "git+ssh://git@github.com:aksonov/react-native-router-flux.git#6cb358b0977c9459bdacf3fef26b6e2670844c46",
     "react-native-tab-view": "0.0.56",
     "react-native-vector-icons": "^4.0.0",
