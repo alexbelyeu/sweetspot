@@ -3,68 +3,83 @@ import { View, TouchableWithoutFeedback, Image, StyleSheet, Dimensions } from 'r
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
+import LinearGradient from 'react-native-linear-gradient'; // eslint-disable-line
 import { SweetText } from '../common';
 import { tapOnSpot, switchMainTab } from '../../actions';
-import BEACHBAR from '../../assets/img/beachbar_400.jpeg';
 
 const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   bubble: {
-    backgroundColor: 'transparent',
+    backgroundColor: 'white',
     height: 0.25 * height,
     width,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  image: {
+  linearGradientStyle: {
     height: 0.2 * height,
     width: 0.9 * width,
     top: 0.025 * height,
     borderRadius: 20,
   },
+  image: {
+    height: 0.2 * height,
+    width: 0.9 * width,
+    opacity: 0.7,
+    borderRadius: 20,
+  },
   promo: {
     position: 'absolute',
     color: 'white',
-    left: 0.06 * width,
-    top: 0.15 * width,
+    left: 0.05 * width,
+    top: 0.06 * height,
     fontSize: 16,
     fontWeight: 'bold',
   },
   name: {
     position: 'absolute',
     color: 'white',
-    left: 0.06 * width,
-    top: 0.2 * width,
+    left: 0.05 * width,
+    top: 0.1 * height,
     fontSize: 14,
   },
   bottomBar: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    backgroundColor: 'aliceblue',
     width: 0.9 * width,
-    height: 0.07 * height,
+    height: 0.05 * height,
     bottom: 0.025 * height,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
+    backgroundColor: 'aliceblue',
   },
   bottomBarElements: {
+    flex: 3,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   icons: {
     marginRight: 5,
-    fontSize: 14,
+    fontSize: 12,
   },
   distance: {
-    fontSize: 14,
+    fontSize: 12,
   },
   time: {
-    fontSize: 14,
+    fontSize: 12,
+  },
+  priceContainer: {
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 90, 234, 0.1)',
+    borderBottomRightRadius: 20,
   },
   price: {
     fontSize: 22,
-    color: 'gray',
+    color: '#514949',
   },
 });
 
@@ -81,16 +96,24 @@ class SpotPreview extends Component {
         onPress={() => this.previewPressed(this.props.tappedSpot)}
       >
         <View style={styles.bubble}>
-          <Image
-            style={styles.image}
-            source={BEACHBAR}
-          />
-          <SweetText style={styles.name}>
-            {this.props.tappedSpot.name}
-          </SweetText>
-          <SweetText style={styles.promo}>
-            {this.props.tappedSpot.promo}
-          </SweetText>
+          <LinearGradient
+            start={{ x: 0.5, y: 0 }}
+            end={{ x: 0.5, y: 1 }}
+            locations={[0, 0.5]}
+            colors={['transparent', 'black']}
+            style={styles.linearGradientStyle}
+          >
+            <Image
+              style={styles.image}
+              source={{ uri: this.props.tappedSpot.image }}
+            />
+            <SweetText style={styles.name}>
+              {this.props.tappedSpot.name}
+            </SweetText>
+            <SweetText style={styles.promo}>
+              {this.props.tappedSpot.promo}
+            </SweetText>
+          </LinearGradient>
           <View style={styles.bottomBar}>
             <View style={styles.bottomBarElements}>
               <Icon name="ios-navigate-outline" style={styles.icons} />
@@ -104,7 +127,7 @@ class SpotPreview extends Component {
                 18:00 - 20:00
               </SweetText>
             </View>
-            <View style={{}}>
+            <View style={styles.priceContainer}>
               <SweetText style={styles.price}>
                 6 €
               </SweetText>
