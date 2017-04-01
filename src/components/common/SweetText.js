@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 
 const SweetText = (props) => {
   return (
-    <Text style={[styles.textStyle, props.style]}>{props.children}</Text>
+    <Text onPress={props.onPress} style={[styles.textStyle, props.style]}>{props.children}</Text>
   );
 };
 
@@ -21,6 +21,7 @@ SweetText.propTypes = {
     React.PropTypes.arrayOf(React.PropTypes.node),
     React.PropTypes.node,
   ]),
+  onPress: React.PropTypes.func,
   style: React.PropTypes.oneOfType([
     React.PropTypes.arrayOf(React.PropTypes.node),
     React.PropTypes.node,
@@ -29,6 +30,7 @@ SweetText.propTypes = {
 
 SweetText.getDefaultProps = {
   children: null,
+  onPress: () => {},
   style: null,
 };
 
