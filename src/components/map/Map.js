@@ -2,7 +2,7 @@ import React from 'react';
 import MapView, { MAP_TYPES, Marker } from 'react-native-maps';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
-import { loadSpots, tapOnSpot } from '../../actions';
+import { loadSpots, /* updateMyPosition, updateRegion,*/ tapOnSpot } from '../../actions';
 import SpotPreview from './SpotPreview';
 import mapStyle from './mapStyle.json';
 import LOGO from '../../assets/img/pin.png';
@@ -21,7 +21,38 @@ class Map extends React.Component {
 
   componentDidMount() {
     this.props.loadSpots(this.props.tokenRouter);
+    // navigator.geolocation.getCurrentPosition(
+    //   (position) => {
+    //     const newLocation = {
+    //       latitude: position.coords.latitude,
+    //       longitude: position.coords.longitude,
+    //     };
+    //     this.onPositionChange(newLocation);
+    //     this.onRegionChange(newLocation);
+    //   },
+    //   error => console.log(error),  // TODO handle error
+    //   { timeout: 20000, maximumAge: 1000 },
+    // );
+    // this.watchID = navigator.geolocation.watchPosition((position) => {
+    //   const newLocation = {
+    //     latitude: position.coords.latitude,
+    //     longitude: position.coords.longitude,
+    //   };
+    //   this.onPositionChange(newLocation);
+    // });
   }
+
+  // componentWillUnmount() {
+  //   navigator.geolocation.clearWatch(this.watchID);
+  // }
+  //
+  // onPositionChange(myLocation) {
+  //   this.props.updateMyPosition(myLocation);
+  // }
+  //
+  // onRegionChange(region) {
+  //   this.props.updateRegion(region);
+  // }
 
   render() {
     return (
@@ -59,6 +90,14 @@ Map.propTypes = {
     latitude: React.PropTypes.number,
     longitude: React.PropTypes.number,
   }),
+  // myLocation: React.PropTypes.shape({
+  //   latitude: React.PropTypes.number,
+  //   longitude: React.PropTypes.number,
+  //   longitudeDelta: React.PropTypes.number,
+  //   latitudeDelta: React.PropTypes.number,
+  // }),
+  // updateMyPosition: React.PropTypes.func,
+  // updateRegion: React.PropTypes.func,
   tapOnSpot: React.PropTypes.func,
   tappedSpot: React.PropTypes.shape({
     name: React.PropTypes.string,
@@ -74,9 +113,10 @@ Map.propTypes = {
 
 Map.defaultProps = {
   items: [],
-  tokenRouter: '',
-  region: {},
   loadSpots: () => {},
+  // myLocation: {},
+  region: {},
+  tokenRouter: '',
   tapOnSpot: () => {},
   tappedSpot: {
     name: '',
@@ -88,6 +128,8 @@ Map.defaultProps = {
     image: '',
     isSelected: false,
   },
+  // updateMyPosition: () => {},
+  // updateRegion: () => {},
 };
 
 const mapStateToProps = ({ spotsReducer, mapReducer, routerReducer }) => {
