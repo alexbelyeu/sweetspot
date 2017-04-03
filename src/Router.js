@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Initial from './components/Initial';
@@ -8,6 +8,7 @@ import { logOut, resolveUser, userLoggedIn } from './actions';
 import Main from './components/Main';
 import Landing from './components/Landing';
 import SpotDetail from './components/spots/SpotDetail';
+import SpotDetailAndroid from './components/spots/SpotDetailAndroid';
 import IMAGOTYPE_BW from './assets/img/imagotype_bw/imagotype_bw.png';
 import USER_OUTLINE from './assets/img/user_outline/user_outline.png';
 
@@ -70,7 +71,7 @@ class RouterComponent extends React.Component {
             sceneStyle={{ paddingTop: 55 }}
           />
           <Scene
-            component={SpotDetail}
+            component={Platform.OS === 'ios' ? SpotDetail : SpotDetailAndroid}
             direction="vertical"
             hideNavBar
             key="spotdetail"

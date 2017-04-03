@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
   },
   bottomBarElements: {
     flex: 3,
+    height: 0.05 * height,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -72,6 +73,7 @@ const styles = StyleSheet.create({
   },
   priceContainer: {
     flex: 2,
+    height: 0.05 * height,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(0, 90, 234, 0.1)',

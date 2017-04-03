@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, StyleSheet, Platform } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   textStyle: {
     fontSize: 16,
-    fontFamily: Platform.OS === 'ios' ? 'AmericanTypewriter' : 'sans-serif',
+    fontFamily: 'OpenSans',
     backgroundColor: 'transparent',
     color: 'darkgray',
   },

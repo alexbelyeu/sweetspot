@@ -3,7 +3,6 @@ import { TouchableWithoutFeedback, View, Image, StyleSheet, Dimensions } from 'r
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
-import ParallaxView from 'react-native-parallax-view';
 import { SweetText } from '../common';
 import IMAGOTYPE_W from '../../assets/img/imagotype_w/imagotype_w.png';
 
@@ -48,6 +47,7 @@ const styles = StyleSheet.create({
   },
   bottomBarElements: {
     flex: 3,
+    height: 0.05 * height,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
   },
   priceContainer: {
     flex: 2,
+    height: 0.05 * height,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#007aff',
@@ -124,62 +125,58 @@ const styles = StyleSheet.create({
   },
 });
 
-class SpotDetail extends Component {
+class SpotDetailAndroid extends Component {
   render() {
     // TODO move Actions.pop to x button.
     return (
       <View style={styles.container}>
-        <ParallaxView
-          backgroundSource={{ uri: this.props.tappedSpot.image }}
-          windowHeight={0.3 * height}
-        >
-          <View style={styles.parallaxViewStyle}>
-            <View style={styles.offer}>
-              <SweetText style={styles.promo}> {this.props.tappedSpot.promo} </SweetText>
-              <SweetText style={styles.name}>
-                {this.props.tappedSpot.name}
-              </SweetText>
-              <View style={styles.bottomBar}>
-                <View style={styles.bottomBarElements}>
-                  <Icon name="ios-navigate-outline" style={styles.icons} />
-                  <SweetText style={styles.distance}>
-                    1,3 km
-                  </SweetText>
-                </View>
-                <View style={styles.bottomBarElements}>
-                  <Icon name="ios-clock-outline" style={styles.icons} />
-                  <SweetText style={styles.time}>
-                    18:00 - 20:00
-                  </SweetText>
-                </View>
-                <View style={styles.priceContainer}>
-                  <SweetText style={styles.price}>
-                    6 €
-                  </SweetText>
-                </View>
+        <Image source={{ uri: this.props.tappedSpot.image }} style={{ height: 0.3 * height }} />
+        <View style={styles.parallaxViewStyle}>
+          <View style={styles.offer}>
+            <SweetText style={styles.promo}> {this.props.tappedSpot.promo} </SweetText>
+            <SweetText style={styles.name}>
+              {this.props.tappedSpot.name}
+            </SweetText>
+            <View style={styles.bottomBar}>
+              <View style={styles.bottomBarElements}>
+                <Icon name="ios-navigate-outline" style={styles.icons} />
+                <SweetText style={styles.distance}>
+                  1,3 km
+                </SweetText>
+              </View>
+              <View style={styles.bottomBarElements}>
+                <Icon name="ios-clock-outline" style={styles.icons} />
+                <SweetText style={styles.time}>
+                  18:00 - 20:00
+                </SweetText>
+              </View>
+              <View style={styles.priceContainer}>
+                <SweetText style={styles.price}>
+                  6 €
+                </SweetText>
               </View>
             </View>
-            <View style={styles.imageSlide}>
-              {
-                [this.props.tappedSpot.behind_image,
-                  this.props.tappedSpot.behind_image,
-                  this.props.tappedSpot.behind_image,
-                  this.props.tappedSpot.behind_image,
-                ].map(image => (
-                  <Image
-                    style={styles.imagesBar}
-                    source={{ uri: image }}
-                    key={Math.random()}
-                  />
-              ))}
-            </View>
-            <View style={styles.offerTextContainer}>
-              <SweetText style={styles.offerTextStyle}>
-                {this.props.tappedSpot.description}
-              </SweetText>
-            </View>
           </View>
-        </ParallaxView>
+          <View style={styles.imageSlide}>
+            {
+              [this.props.tappedSpot.behind_image,
+                this.props.tappedSpot.behind_image,
+                this.props.tappedSpot.behind_image,
+                this.props.tappedSpot.behind_image,
+              ].map(image => (
+                <Image
+                  style={styles.imagesBar}
+                  source={{ uri: image }}
+                  key={Math.random()}
+                />
+            ))}
+          </View>
+          <View style={styles.offerTextContainer}>
+            <SweetText style={styles.offerTextStyle}>
+              {this.props.tappedSpot.description}
+            </SweetText>
+          </View>
+        </View>
         <TouchableWithoutFeedback onPress={Actions.pop}>
           <View style={styles.closeButtonContainer}>
             <Icon
@@ -196,7 +193,7 @@ class SpotDetail extends Component {
   }
 }
 
-SpotDetail.propTypes = {
+SpotDetailAndroid.propTypes = {
   tappedSpot: React.PropTypes.shape({
     name: React.PropTypes.string,
     promo: React.PropTypes.string,
@@ -208,7 +205,7 @@ SpotDetail.propTypes = {
   }),
 };
 
-SpotDetail.defaultProps = {
+SpotDetailAndroid.defaultProps = {
   tappedSpot: {
     name: '',
     promo: '',
@@ -225,4 +222,4 @@ const mapStateToProps = ({ mapReducer }) => {
   return { tappedSpot };
 };
 
-export default connect(mapStateToProps)(SpotDetail);
+export default connect(mapStateToProps)(SpotDetailAndroid);
