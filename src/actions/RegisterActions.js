@@ -18,7 +18,7 @@ const registerUserSuccess = (dispatch, token) => {
     type: REGISTER_USER_SUCCESS,
     payload: token,
   });
-  Actions.main({ type: 'reset' });
+  Actions.drawer({ type: 'reset' });
 };
 
 const registerUserFail = (dispatch, response) => {

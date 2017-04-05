@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform, Dimensions } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import NavigationDrawer from './components/NavigationDrawer';
 import Initial from './components/Initial';
 import { Spinner } from './components/common';
 import { logOut, resolveUser, userLoggedIn } from './actions';
@@ -12,6 +13,7 @@ import SpotDetailAndroid from './components/spots/SpotDetailAndroid';
 import IMAGOTYPE_BW from './assets/img/imagotype_bw/imagotype_bw.png';
 import USER_OUTLINE from './assets/img/user_outline/user_outline.png';
 
+const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   navBar: {
     height: 55,
@@ -56,27 +58,29 @@ class RouterComponent extends React.Component {
     }
     return (
       <Router>
-        <Scene key="main" initial>
-          <Scene
-            component={Main}
-            initial
-            key="map"
-            leftButtonImage={USER_OUTLINE}
-            leftButtonStyle={styles.navBarLeftButtonStyle}
-            navigationBarStyle={styles.navBar}
-            navigationBarTitleImage={IMAGOTYPE_BW}
-            navigationBarTitleImageStyle={styles.navBarTitleStyle}
-            onLeft={onLogOut}
-            panHandlers={null}
-            sceneStyle={{ paddingTop: 55 }}
-          />
-          <Scene
-            component={Platform.OS === 'ios' ? SpotDetail : SpotDetailAndroid}
-            direction="vertical"
-            hideNavBar
-            key="spotdetail"
-            panHandlers={null}
-          />
+        <Scene key="drawer" component={NavigationDrawer} open={false} onLogOut={onLogOut}>
+          <Scene key="main" initial>
+            <Scene
+              component={Main}
+              initial
+              key="map"
+              leftButtonImage={USER_OUTLINE}
+              leftButtonStyle={styles.navBarLeftButtonStyle}
+              navigationBarStyle={styles.navBar}
+              navigationBarTitleImage={IMAGOTYPE_BW}
+              navigationBarTitleImageStyle={styles.navBarTitleStyle}
+              onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
+              panHandlers={null}
+              sceneStyle={{ paddingTop: 55 }}
+            />
+            <Scene
+              component={Platform.OS === 'ios' ? SpotDetail : SpotDetailAndroid}
+              direction="vertical"
+              hideNavBar
+              key="spotdetail"
+              panHandlers={Platform.OS === 'android' ? undefined : null}
+            />
+          </Scene>
         </Scene>
         <Scene
           component={Initial}

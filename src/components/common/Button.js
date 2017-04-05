@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
 
 const { blueButtonText, whiteButtonStyle, buttonStyle, linearGradientStyle, textStyle } = styles;
 
-const Button = (props) => {
-  return (
+const Button = props =>
+  (
     <TouchableOpacity
       onPress={props.onPress}
       style={[buttonStyle, props.style, props.white && whiteButtonStyle]}
@@ -51,7 +51,6 @@ const Button = (props) => {
       </LinearGradient>
     </TouchableOpacity>
   );
-};
 
 Button.propTypes = {
   children: React.PropTypes.oneOfType([
