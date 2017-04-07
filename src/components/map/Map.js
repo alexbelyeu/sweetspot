@@ -42,6 +42,13 @@ class Map extends React.Component {
     // });
   }
 
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.map !== null && nextProps) {
+  //     console.log('receiving')
+  //     this.map.fitToElements(true);
+  //   }
+  // }
+
   // componentWillUnmount() {
   //   navigator.geolocation.clearWatch(this.watchID);
   // }

@@ -46,15 +46,21 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
   },
-  bottomBarElements: {
+  distanceContainer: {
     flex: 3,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  timeContainer: {
+    flex: 4,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
   icons: {
     marginRight: 5,
-    fontSize: 12,
+    fontSize: 14,
     color: '#007aff',
   },
   distance: {
@@ -64,7 +70,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   priceContainer: {
-    flex: 2,
+    flex: 3,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#007aff',
@@ -140,13 +146,13 @@ class SpotDetail extends Component {
                 {this.props.tappedSpot.name}
               </SweetText>
               <View style={styles.bottomBar}>
-                <View style={styles.bottomBarElements}>
+                <View style={styles.distanceContainer}>
                   <Icon name="ios-navigate-outline" style={styles.icons} />
                   <SweetText style={styles.distance}>
                     1,3 km
                   </SweetText>
                 </View>
-                <View style={styles.bottomBarElements}>
+                <View style={styles.timeContainer}>
                   <Icon name="ios-clock-outline" style={styles.icons} />
                   <SweetText style={styles.time}>
                     18:00 - 20:00

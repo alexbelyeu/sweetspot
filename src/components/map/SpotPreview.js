@@ -15,18 +15,26 @@ const styles = StyleSheet.create({
     width,
     alignItems: 'center',
     justifyContent: 'center',
+    shadowColor: 'black',
+    shadowOffset: { width: 5, height: 5 },
+    shadowOpacity: 1,
+    shadowRadius: 5,
   },
   linearGradientStyle: {
     height: 0.2 * height,
     width: 0.9 * width,
     top: 0.025 * height,
-    borderRadius: 20,
+    borderRadius: 5,
+    shadowColor: 'black',
+    shadowOffset: { width: 3, height: 3 },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
   },
   image: {
     height: 0.2 * height,
     width: 0.9 * width,
     opacity: 0.7,
-    borderRadius: 20,
+    borderRadius: 5,
   },
   promo: {
     position: 'absolute',
@@ -41,7 +49,7 @@ const styles = StyleSheet.create({
     color: 'white',
     left: 0.05 * width,
     top: 0.1 * height,
-    fontSize: 14,
+    fontSize: 12,
   },
   bottomBar: {
     flexDirection: 'row',
@@ -50,12 +58,19 @@ const styles = StyleSheet.create({
     width: 0.9 * width,
     height: 0.05 * height,
     bottom: 0.025 * height,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
     backgroundColor: 'aliceblue',
   },
-  bottomBarElements: {
+  distanceContainer: {
     flex: 3,
+    height: 0.05 * height,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  timeContainer: {
+    flex: 4,
     height: 0.05 * height,
     flexDirection: 'row',
     alignItems: 'center',
@@ -63,7 +78,7 @@ const styles = StyleSheet.create({
   },
   icons: {
     marginRight: 5,
-    fontSize: 12,
+    fontSize: 14,
   },
   distance: {
     fontSize: 12,
@@ -72,12 +87,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   priceContainer: {
-    flex: 2,
+    flex: 3,
     height: 0.05 * height,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(0, 90, 234, 0.1)',
-    borderBottomRightRadius: 20,
+    borderBottomRightRadius: 5,
   },
   price: {
     fontSize: 22,
@@ -117,13 +132,13 @@ class SpotPreview extends Component {
             </SweetText>
           </LinearGradient>
           <View style={styles.bottomBar}>
-            <View style={styles.bottomBarElements}>
+            <View style={styles.distanceContainer}>
               <Icon name="ios-navigate-outline" style={styles.icons} />
               <SweetText style={styles.distance}>
                 1,3 km
               </SweetText>
             </View>
-            <View style={styles.bottomBarElements}>
+            <View style={styles.timeContainer}>
               <Icon name="ios-clock-outline" style={styles.icons} />
               <SweetText style={styles.time}>
                 18:00 - 20:00

@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
 });
 
 const SideMenu = (props) => {
-  console.log(props);
   return (
     <View style={styles.menu}>
       <View style={styles.header}>

@@ -7,7 +7,6 @@ class NavigationDrawer extends Component {
   render() {
     const state = this.props.navigationState;
     const children = state.children;
-    console.log(state);
     return (
       <Drawer
         ref={(ref) => { this.drawer = ref; }}

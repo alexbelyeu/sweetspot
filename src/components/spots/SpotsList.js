@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
   row: {
     height: 0.2 * height,
-    backgroundColor: 'transparent',
+    backgroundColor: 'white',
   },
   linearGradientStyle: {
     width,
@@ -50,9 +50,21 @@ const styles = StyleSheet.create({
     height: 0.05 * height,
     bottom: 0.05 * height,
     backgroundColor: 'white',
+    shadowColor: 'black',
+    shadowOffset: { height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+
   },
-  bottomBarElements: {
+  distanceContainer: {
     flex: 3,
+    height: 0.05 * height,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  timeContainer: {
+    flex: 4,
     height: 0.05 * height,
     flexDirection: 'row',
     alignItems: 'center',
@@ -60,8 +72,7 @@ const styles = StyleSheet.create({
   },
   icons: {
     marginRight: 5,
-    fontSize: 12,
-    // color: '#007aff',
+    fontSize: 14,
   },
   distance: {
     fontSize: 12,
@@ -70,7 +81,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   priceContainer: {
-    flex: 2,
+    flex: 3,
     height: 0.05 * height,
     alignItems: 'center',
     justifyContent: 'center',
@@ -150,13 +161,13 @@ class SpotsList extends Component {
                   </SweetText>
                 </LinearGradient>
                 <View style={styles.bottomBar}>
-                  <View style={styles.bottomBarElements}>
+                  <View style={styles.distanceContainer}>
                     <Icon name="ios-navigate-outline" style={styles.icons} />
                     <SweetText style={styles.distance}>
                       1,3 km
                     </SweetText>
                   </View>
-                  <View style={styles.bottomBarElements}>
+                  <View style={styles.timeContainer}>
                     <Icon name="ios-clock-outline" style={styles.icons} />
                     <SweetText style={styles.time}>
                       18:00 - 20:00
