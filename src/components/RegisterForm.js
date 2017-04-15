@@ -8,16 +8,15 @@ const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 0.1 * height,
-    marginHorizontal: 0.1 * width,
+    marginVertical: 0.05 * height,
+    marginHorizontal: 0.075 * width,
   },
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
     color: 'crimson',
+    top: 0,
   },
   usernameStyle: {
     borderTopLeftRadius: 5,
@@ -26,7 +25,16 @@ const styles = StyleSheet.create({
   passwordStyle: {
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
-    marginBottom: 0.1 * height,
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    height: 0.081 * height,
+  },
+  spinnerContainer: {
+    flex: 1,
+    width: 0.85 * width,
+    alignItems: 'center',
   },
   button: {
     borderRadius: 5,
@@ -61,7 +69,11 @@ class RegisterForm extends Component {
 
   renderButton() {
     if (this.props.loading) {
-      return <Spinner size="large" />;
+      return (
+        <View style={styles.spinnerContainer}>
+          <Spinner size="large" />
+        </View>
+      );
     }
 
     return (
@@ -105,9 +117,14 @@ class RegisterForm extends Component {
           value={this.props.password}
         />
         <SweetText style={styles.errorTextStyle}>
+          {this.props.passwordError}
+        </SweetText>
+        <SweetText style={styles.errorTextStyle}>
           {this.props.error}
         </SweetText>
-        {this.renderButton()}
+        <View style={styles.buttonContainer}>
+          {this.renderButton()}
+        </View>
       </View>
     );
   }
@@ -118,10 +135,11 @@ RegisterForm.propTypes = {
   emailCreated: React.PropTypes.func,
   passwordCreated: React.PropTypes.func,
   username: React.PropTypes.string.isRequired,
-  usernameError: React.PropTypes.string.isRequired,
+  usernameError: React.PropTypes.string,
   email: React.PropTypes.string.isRequired,
-  emailError: React.PropTypes.string.isRequired,
+  emailError: React.PropTypes.string,
   password: React.PropTypes.string.isRequired,
+  passwordError: React.PropTypes.string,
   error: React.PropTypes.string,
   registerUser: React.PropTypes.func,
   loading: React.PropTypes.bool.isRequired,
@@ -129,16 +147,19 @@ RegisterForm.propTypes = {
 
 RegisterForm.defaultProps = {
   usernameCreated: () => {},
+  usernameError: '',
   emailCreated: () => {},
-  error: '',
+  emailError: '',
   passwordCreated: () => {},
+  passwordError: '',
+  error: '',
   registerUser: () => {},
 };
 
 const mapStateToProps = ({ registerReducer }) => {
-  const { username, usernameError, email, emailError, password, error, loading } = registerReducer;
+  const { username, usernameError, email, emailError, password, passwordError, error, loading } = registerReducer;
 
-  return { username, usernameError, email, emailError, password, error, loading };
+  return { username, usernameError, email, emailError, password, passwordError, error, loading };
 };
 
 export default connect(mapStateToProps, {

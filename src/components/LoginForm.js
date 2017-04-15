@@ -8,16 +8,15 @@ const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 0.1 * height,
-    marginHorizontal: 0.1 * width,
+    marginVertical: 0.05 * height,
+    marginHorizontal: 0.075 * width,
   },
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
     color: 'crimson',
+    top: 0,
   },
   usernameStyle: {
     borderTopLeftRadius: 5,
@@ -26,7 +25,16 @@ const styles = StyleSheet.create({
   passwordStyle: {
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
-    marginBottom: 0.2 * height,
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    height: 0.081 * height,
+  },
+  spinnerContainer: {
+    flex: 1,
+    width: 0.85 * width,
+    alignItems: 'center',
   },
   button: {
     borderRadius: 5,
@@ -56,7 +64,11 @@ class LoginForm extends Component {
 
   renderButton() {
     if (this.props.loading) {
-      return <Spinner size="large" />;
+      return (
+        <View style={styles.spinnerContainer}>
+          <Spinner size="large" />
+        </View>
+      );
     }
 
     return (
@@ -94,7 +106,9 @@ class LoginForm extends Component {
         <SweetText style={styles.errorTextStyle}>
           {this.props.error}
         </SweetText>
-        {this.renderButton()}
+        <View style={styles.buttonContainer}>
+          {this.renderButton()}
+        </View>
       </View>
     );
   }
@@ -105,8 +119,8 @@ LoginForm.propTypes = {
   passwordChanged: React.PropTypes.func,
   username: React.PropTypes.string.isRequired,
   password: React.PropTypes.string.isRequired,
-  usernameError: React.PropTypes.string.isRequired,
-  passwordError: React.PropTypes.string.isRequired,
+  usernameError: React.PropTypes.string,
+  passwordError: React.PropTypes.string,
   error: React.PropTypes.string.isRequired,
   loginUser: React.PropTypes.func.isRequired,
   loading: React.PropTypes.bool.isRequired,
@@ -114,7 +128,9 @@ LoginForm.propTypes = {
 
 LoginForm.defaultProps = {
   usernameChanged: () => {},
+  usernameError: '',
   passwordChanged: () => {},
+  passwordError: '',
 };
 
 const mapStateToProps = ({ loginReducer }) => {

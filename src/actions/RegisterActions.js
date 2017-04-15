@@ -7,6 +7,7 @@ import {
   REGISTER_USER_SUCCESS,
   REGISTER_USER_USERNAME_FAIL,
   REGISTER_USER_EMAIL_FAIL,
+  REGISTER_USER_PASSWORD_FAIL,
   REGISTER_USER_ERROR,
   REGISTER_USER,
 } from './types';
@@ -36,7 +37,7 @@ const registerUserFail = (dispatch, response) => {
   }
   if (response.password) {
     dispatch({
-      type: REGISTER_USER_ERROR,
+      type: REGISTER_USER_PASSWORD_FAIL,
       payload: response.password[0] || '',
     });
   }

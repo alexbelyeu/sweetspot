@@ -3,7 +3,7 @@ import { TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient'; // eslint-disable-line
 import { SweetText } from './SweetText';
 
-const { width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   textStyle: {
     alignSelf: 'center',
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     width: 0.85 * width,
-    margin: 5,
+    marginVertical: 5,
   },
   whiteButtonStyle: {
     borderWidth: 1,

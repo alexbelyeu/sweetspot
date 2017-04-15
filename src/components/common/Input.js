@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: '#007aff',
     borderWidth: 1,
+    width: 0.85 * width,
   },
   inputStyle: {
     flex: 4,
@@ -18,11 +19,13 @@ const styles = StyleSheet.create({
     width: 0.8 * width,
     height: 60,
   },
-  labelStyle: {
+  iconContainer: {
     flex: 1,
+    alignItems: 'center',
+  },
+  labelStyle: {
     fontSize: 22,
     color: 'lightgray',
-    paddingLeft: 20,
   },
 });
 
@@ -40,7 +43,9 @@ const Input = (props) => {
         value={props.value}
         onChangeText={props.onChangeText}
       />
-      <Icon name={props.label} style={labelStyle} />
+      <View style={styles.iconContainer}>
+        <Icon name={props.label} style={labelStyle} />
+      </View>
     </View>
   );
 };

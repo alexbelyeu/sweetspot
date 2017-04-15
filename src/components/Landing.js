@@ -13,12 +13,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tabbar: {
-    marginHorizontal: Platform.OS === 'ios' ? (0.1 * width) : 0,
+    marginHorizontal: Platform.OS === 'ios' ? (0.075 * width) : 0,
     marginTop: Platform.OS === 'ios' ? (0.25 * width) : 0,
     backgroundColor: 'white',
   },
   tabStyle: {
-    width: Platform.OS === 'ios' ? 0.8 * (width / numberOfTabs) : (width / numberOfTabs),
+    width: Platform.OS === 'ios' ? 0.85 * (width / numberOfTabs) : (width / numberOfTabs),
   },
   labelTabbar: {
     color: '#007aff',
