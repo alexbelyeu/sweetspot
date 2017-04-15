@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   buttonStyle: {
-    width: 0.8 * width,
+    width: 0.85 * width,
     margin: 5,
   },
   whiteButtonStyle: {

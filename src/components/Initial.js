@@ -4,30 +4,27 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { Button, SweetText } from './common';
 import { switchLandingTab } from '../actions';
-import LOGO from '../assets/img/logo-sweetspot.png';
-import NAME from '../assets/img/name.png';
+import IMAGOTYPE from '../assets/img/imagotype/imagotype.png';
 
-const { height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
-  },
-  logo: {
-    width: 150,
-    height: 150,
-    marginBottom: 10,
+    top: 0.27 * height,
   },
   name: {
-    width: 148,
-    height: 20,
-    marginTop: 20,
+    width: 0.7586 * width,
+    height: 0.065 * height,
+    overflow: 'visible',
   },
   textStyle: {
-    color: 'darkgray',
-    marginBottom: 0.1 * height,
+    color: '#4a4a4a',
+    marginTop: 0.0186 * height,
+    fontFamily: 'OpenSans-Light',
+  },
+  buttonsContainer: {
+    top: 0.35 * height,
   },
 });
 
@@ -52,11 +49,12 @@ class Initial extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image style={styles.logo} source={LOGO} />
-        <Image style={styles.name} source={NAME} />
+        <Image style={styles.name} source={IMAGOTYPE} />
         <SweetText style={styles.textStyle}>real time leisure</SweetText>
-        <Button blue onPress={this.onPressLogin}>LOGIN</Button>
-        <Button white onPress={this.onPressRegister}>REGISTER</Button>
+        <View style={styles.buttonsContainer}>
+          <Button blue onPress={this.onPressLogin}>LOGIN</Button>
+          <Button white onPress={this.onPressRegister}>REGISTER</Button>
+        </View>
       </View>
     );
   }

@@ -83,6 +83,7 @@
 		982490B51E7624CC0035A9A2 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 982490AB1E7624CC0035A9A2 /* Zocial.ttf */; };
 		982490B71E7626970035A9A2 /* fontello.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 982490B61E7626970035A9A2 /* fontello.ttf */; };
 		9832DE9D1E8B2C0C00BEA91F /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9832DE831E8B2BEE00BEA91F /* libBVLinearGradient.a */; };
+		98759B791EA2897D0015A082 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98759B781EA2897D0015A082 /* OpenSans-Light.ttf */; };
 		98DE301F1E9192C600E6BD29 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98DE301D1E9192C600E6BD29 /* OpenSans-Bold.ttf */; };
 		98DE30201E9192C600E6BD29 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98DE301E1E9192C600E6BD29 /* OpenSans-Regular.ttf */; };
 /* End PBXBuildFile section */
@@ -394,6 +395,7 @@
 		982490AB1E7624CC0035A9A2 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
 		982490B61E7626970035A9A2 /* fontello.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = fontello.ttf; path = ../../../src/assets/fonts/fontello/font/fontello.ttf; sourceTree = "<group>"; };
 		9832DE7E1E8B2BED00BEA91F /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
+		98759B781EA2897D0015A082 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		98DE301D1E9192C600E6BD29 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		98DE301E1E9192C600E6BD29 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		ECDC0D4FD1D4ECD7978C7927 /* Pods-SweetSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SweetSpot.release.xcconfig"; path = "Pods/Target Support Files/Pods-SweetSpot/Pods-SweetSpot.release.xcconfig"; sourceTree = "<group>"; };
@@ -729,6 +731,7 @@
 		982490A11E7624CC0035A9A2 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				98759B781EA2897D0015A082 /* OpenSans-Light.ttf */,
 				98DE301D1E9192C600E6BD29 /* OpenSans-Bold.ttf */,
 				98DE301E1E9192C600E6BD29 /* OpenSans-Regular.ttf */,
 				982490A21E7624CC0035A9A2 /* Entypo.ttf */,
@@ -1155,6 +1158,7 @@
 				982490AF1E7624CC0035A9A2 /* Foundation.ttf in Resources */,
 				98DE301F1E9192C600E6BD29 /* OpenSans-Bold.ttf in Resources */,
 				982490B21E7624CC0035A9A2 /* MaterialIcons.ttf in Resources */,
+				98759B791EA2897D0015A082 /* OpenSans-Light.ttf in Resources */,
 				98DE30201E9192C600E6BD29 /* OpenSans-Regular.ttf in Resources */,
 				982490AC1E7624CC0035A9A2 /* Entypo.ttf in Resources */,
 				982490B11E7624CC0035A9A2 /* MaterialCommunityIcons.ttf in Resources */,
