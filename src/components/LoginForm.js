@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 0.075 * width,
   },
   errorTextStyle: {
-    fontSize: 20,
+    fontSize: (height < 600) ? 20 : 24,
     alignSelf: 'center',
     color: 'crimson',
     top: 0,

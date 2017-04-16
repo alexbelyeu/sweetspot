@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   promo: {
-    fontSize: 20,
+    fontSize: (height < 600) ? 20 : 24,
     fontWeight: 'bold',
     color: 'gray',
     textAlign: 'center',
@@ -60,14 +60,14 @@ const styles = StyleSheet.create({
   },
   icons: {
     marginRight: 5,
-    fontSize: 14,
+    fontSize: (height < 600) ? 14 : 18,
     color: '#007aff',
   },
   distance: {
-    fontSize: 12,
+    fontSize: (height < 600) ? 12 : 16,
   },
   time: {
-    fontSize: 12,
+    fontSize: (height < 600) ? 12 : 16,
   },
   priceContainer: {
     flex: 3,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 5,
   },
   price: {
-    fontSize: 22,
+    fontSize: (height < 600) ? 22 : 26,
     color: 'white',
   },
   imageSlide: {
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     width: 0.9 * width,
   },
   offerTextStyle: {
-    fontSize: 14,
+    fontSize: (height < 600) ? 14 : 18,
   },
   closeButtonContainer: {
     position: 'absolute',
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   closeButtonIcon: {
     backgroundColor: 'transparent',
     color: 'white',
-    fontSize: 30,
+    fontSize: (height < 600) ? 30 : 34,
   },
   imagotypeContainer: {
     position: 'absolute',

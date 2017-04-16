@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     color: 'white',
     left: 0.05 * width,
     top: 0.06 * height,
-    fontSize: 16,
+    fontSize: (height < 600) ? 16 : 20,
     fontWeight: 'bold',
   },
   name: {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     color: 'white',
     left: 0.05 * width,
     top: 0.1 * height,
-    fontSize: 12,
+    fontSize: (height < 600) ? 12 : 16,
   },
   bottomBar: {
     flexDirection: 'row',
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     bottom: 0.025 * height,
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
-    backgroundColor: 'aliceblue',
+    backgroundColor: 'white',
   },
   distanceContainer: {
     flex: 3,
@@ -78,13 +78,13 @@ const styles = StyleSheet.create({
   },
   icons: {
     marginRight: 5,
-    fontSize: 14,
+    fontSize: (height < 600) ? 14 : 18,
   },
   distance: {
-    fontSize: 12,
+    fontSize: (height < 600) ? 14 : 18,
   },
   time: {
-    fontSize: 12,
+    fontSize: (height < 600) ? 14 : 18,
   },
   priceContainer: {
     flex: 3,
@@ -95,7 +95,8 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 5,
   },
   price: {
-    fontSize: 22,
+    fontSize: (height < 600) ? 24 : 28,
+    fontWeight: 'bold',
     color: '#514949',
   },
 });

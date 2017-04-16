@@ -10,7 +10,7 @@ import { tapOnSpot } from '../../actions';
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   errorTextStyle: {
-    fontSize: 20,
+    fontSize: (height < 600) ? 20 : 24,
     alignSelf: 'center',
     color: 'crimson',
   },
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   promo: {
     position: 'absolute',
-    fontSize: 18,
+    fontSize: (height < 600) ? 18 : 22,
     left: 10,
     top: 10,
     fontWeight: 'bold',
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     left: 10,
     top: 30,
     color: 'white',
-    fontSize: 14,
+    fontSize: (height < 600) ? 14 : 18,
   },
   bottomBar: {
     flexDirection: 'row',
@@ -72,13 +72,13 @@ const styles = StyleSheet.create({
   },
   icons: {
     marginRight: 5,
-    fontSize: 14,
+    fontSize: (height < 600) ? 14 : 18,
   },
   distance: {
-    fontSize: 12,
+    fontSize: (height < 600) ? 12 : 16,
   },
   time: {
-    fontSize: 12,
+    fontSize: (height < 600) ? 12 : 16,
   },
   priceContainer: {
     flex: 3,
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'aliceblue',
   },
   price: {
-    fontSize: 22,
+    fontSize: (height < 600) ? 22 : 26,
     color: '#514949',
   },
 });

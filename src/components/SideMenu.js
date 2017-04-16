@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   name: {
     color: 'black',
-    fontSize: 20,
+    fontSize: (height < 600) ? 20 : 24,
   },
   logOutButton: {
     position: 'absolute',
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   icons: {
-    fontSize: 16,
+    fontSize: (height < 600) ? 16 : 20,
     marginLeft: 5,
     alignSelf: 'flex-end',
   },
@@ -85,7 +85,6 @@ SideMenu.defaultProps = {
 const mapStateToProps = ({ loginReducer, registerReducer }) => {
   const { username: loginUsername } = loginReducer;
   const { username: registerUsername } = registerReducer;
-  console.log(loginReducer);
   return { loginUsername, registerUsername };
 };
 

@@ -1,9 +1,10 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, Dimensions } from 'react-native';
 
+const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   textStyle: {
-    fontSize: 16,
+    fontSize: (height < 600) ? 16 : 20,
     fontFamily: 'OpenSans',
     backgroundColor: 'transparent',
     color: 'darkgray',

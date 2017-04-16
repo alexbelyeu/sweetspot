@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput, View, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const { width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   containerStyle: {
     flexDirection: 'row',
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     flex: 4,
     color: '#000',
     paddingHorizontal: 10,
-    fontSize: 18,
+    fontSize: (height < 600) ? 18 : 22,
     width: 0.8 * width,
     height: 60,
   },
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   labelStyle: {
-    fontSize: 22,
+    fontSize: (height < 600) ? 22 : 26,
     color: 'lightgray',
   },
 });
