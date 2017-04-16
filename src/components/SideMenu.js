@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 import Hr from 'react-native-hr';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { SweetText } from './common';
@@ -53,7 +54,7 @@ const SideMenu = (props) => {
           source={USER_PROFILE}
         />
         <SweetText style={styles.name}>
-          Alex Belyeu
+          {props.loginUsername || props.registerUsername}
         </SweetText>
       </View>
       <Hr lineColor="#007aff" />
@@ -71,10 +72,21 @@ const SideMenu = (props) => {
 
 SideMenu.propTypes = {
   onLogOut: React.PropTypes.func,
+  loginUsername: React.PropTypes.string,
+  registerUsername: React.PropTypes.string,
 };
 
 SideMenu.defaultProps = {
   onLogOut: () => {},
+  loginUsername: '',
+  registerUsername: '',
 };
 
-export default SideMenu;
+const mapStateToProps = ({ loginReducer, registerReducer }) => {
+  const { username: loginUsername } = loginReducer;
+  const { username: registerUsername } = registerReducer;
+  console.log(loginReducer);
+  return { loginUsername, registerUsername };
+};
+
+export default connect(mapStateToProps)(SideMenu);
