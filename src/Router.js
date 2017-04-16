@@ -13,18 +13,19 @@ import SpotDetailAndroid from './components/spots/SpotDetailAndroid';
 import IMAGOTYPE_BW from './assets/img/imagotype_bw/imagotype_bw.png';
 import USER_OUTLINE from './assets/img/user_outline/user_outline.png';
 
-const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
-  navBar: {
-    height: 55,
+  navigationBarStyle: {
+    flex: 1,
+    height: Platform.OS === 'ios' ? 55 : 40,
     backgroundColor: 'white',
   },
-  navBarTitleStyle: {
-    resizeMode: 'contain',
-    height: 15,
+  leftButtonStyle: {
+    paddingBottom: 15,
   },
-  navBarLeftButtonStyle: {
-    // height: 15,
+  navigationBarTitleImageStyle: {
+    resizeMode: 'contain',
+    alignSelf: 'center',
+    height: 15,
   },
 });
 
@@ -65,13 +66,13 @@ class RouterComponent extends React.Component {
               initial
               key="map"
               leftButtonImage={USER_OUTLINE}
-              leftButtonStyle={styles.navBarLeftButtonStyle}
-              navigationBarStyle={styles.navBar}
+              leftButtonStyle={styles.leftButtonStyle}
               navigationBarTitleImage={IMAGOTYPE_BW}
-              navigationBarTitleImageStyle={styles.navBarTitleStyle}
+              navigationBarStyle={styles.navigationBarStyle}
+              navigationBarTitleImageStyle={styles.navigationBarTitleImageStyle}
               onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
               panHandlers={null}
-              sceneStyle={{ paddingTop: 55 }}
+              sceneStyle={{ paddingTop: 40 }}
             />
             <Scene
               component={Platform.OS === 'ios' ? SpotDetail : SpotDetailAndroid}
