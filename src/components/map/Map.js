@@ -68,7 +68,7 @@ class Map extends React.Component {
           customMapStyle={mapStyle}
           initialRegion={this.props.region}
           mapType={MAP_TYPES.standard}
-          onPress={() => null}
+          onPress={() => this.props.tapOnSpot(null)}
           provider={MapView.PROVIDER_GOOGLE}
           ref={(ref) => { this.map = ref; }}
           showsUserLocation
@@ -78,7 +78,7 @@ class Map extends React.Component {
             <Marker
               coordinate={marker.latlng}
               image={LOGO}
-              onPress={() => this.props.tapOnSpot(marker)}
+              onPress={(e) => { e.stopPropagation(); this.props.tapOnSpot(marker); }}
               key={marker.id}
             />
           ))}

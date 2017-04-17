@@ -56,7 +56,7 @@ export default (state = INITIAL_STATE, action) => {
       };
 
     case TAP_ON_SPOT:
-      return { ...state, tappedSpot: { ...action.payload, isSelected: true } };
+      return { ...state, tappedSpot: { ...action.payload, isSelected: action.payload !== null } };
 
     case REHYDRATE: {
       const incoming = action.payload.mapReducer;
