@@ -20,12 +20,15 @@ const styles = StyleSheet.create({
   },
   offer: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     height: 0.2 * height,
     width: 0.85 * width,
     top: -0.1 * height,
+    marginBottom: 0.05 * height,
     borderRadius: 5,
+    paddingTop: 0.015 * height,
     backgroundColor: 'white',
+    elevation: 3,
   },
   promo: {
     fontSize: (height < 600) ? 20 : 24,
@@ -34,7 +37,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   name: {
-    color: 'gray',
+    color: 'darkgray',
   },
   bottomBar: {
     flexDirection: 'row',
@@ -45,7 +48,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
   },
-  bottomBarElements: {
+  bottomBarElement: {
     flex: 3,
     height: 0.05 * height,
     flexDirection: 'row',
@@ -95,6 +98,7 @@ const styles = StyleSheet.create({
   closeButtonContainer: {
     position: 'absolute',
     alignItems: 'center',
+    justifyContent: 'center',
     height: 30,
     width: 30,
     top: 0.04 * height,
@@ -134,17 +138,15 @@ class SpotDetailAndroid extends Component {
         <View style={styles.parallaxViewStyle}>
           <View style={styles.offer}>
             <SweetText style={styles.promo}> {this.props.tappedSpot.promo} </SweetText>
-            <SweetText style={styles.name}>
-              {this.props.tappedSpot.name}
-            </SweetText>
+            <SweetText style={styles.name}> {this.props.tappedSpot.name} </SweetText>
             <View style={styles.bottomBar}>
-              <View style={styles.bottomBarElements}>
+              <View style={styles.bottomBarElement}>
                 <Icon name="ios-navigate-outline" style={styles.icons} />
                 <SweetText style={styles.distance}>
                   1,3 km
                 </SweetText>
               </View>
-              <View style={styles.bottomBarElements}>
+              <View style={styles.bottomBarElement}>
                 <Icon name="ios-clock-outline" style={styles.icons} />
                 <SweetText style={styles.time}>
                   18:00 - 20:00

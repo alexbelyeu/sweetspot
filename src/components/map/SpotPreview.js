@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 1,
     shadowRadius: 5,
+    elevation: 2,
   },
   linearGradientStyle: {
     height: 0.2 * height,
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
     fontSize: (height < 600) ? 12 : 16,
   },
   bottomBar: {
+    elevation: 3,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',

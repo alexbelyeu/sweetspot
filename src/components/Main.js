@@ -47,8 +47,8 @@ class Main extends Component {
           return <AnimatedIcon name={'ios-list'} size={32} style={{ color }} />;
         case '1':
           return <AnimatedLogo src={'logo'} name={'logo'} size={32} style={{ color }} />;
-        case '2':
-          return <AnimatedIcon name={'ios-bookmark'} size={26} style={{ color }} />;
+        // case '2':
+        //   return <AnimatedIcon name={'ios-bookmark'} size={26} style={{ color }} />;
         default:
           return null;
       }
@@ -71,8 +71,8 @@ class Main extends Component {
           return <SpotsList list="around" />;
         case '1':
           return <Map />;
-        case '2':
-          return <SpotsList list="saved" />;
+        // case '2':
+        //   return <SpotsList list="saved" />;
         default:
           return null;
       }

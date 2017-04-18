@@ -8,7 +8,7 @@ const INITIAL_STATE = {
   routes: [
     { key: '0', icon: 'list' },
     { key: '1', icon: 'logo' },
-    { key: '2', icon: 'saved' },
+    // { key: '2', icon: 'saved' },
   ],
 };
 

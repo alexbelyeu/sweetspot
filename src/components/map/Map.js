@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { loadSpots, /* updateMyPosition, updateRegion,*/ tapOnSpot } from '../../actions';
 import SpotPreview from './SpotPreview';
 import mapStyle from './mapStyle.json';
-import LOGO from '../../assets/img/logo-icono.png';
+import LOGO from '../../assets/img/logo-marker1/logo-marker1.png';
 
 const styles = StyleSheet.create({
   container: {
