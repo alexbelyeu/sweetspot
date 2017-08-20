@@ -76,10 +76,10 @@ class Map extends React.Component {
         >
           {this.props.items.map(marker => (
             <Marker
-              coordinate={marker.latlng}
+              coordinate={marker.position}
               image={LOGO}
               onPress={(e) => { e.stopPropagation(); this.props.tapOnSpot(marker); }}
-              key={marker.id}
+              key={marker.key}
             />
           ))}
         </MapView>
@@ -110,7 +110,10 @@ Map.propTypes = {
     name: React.PropTypes.string,
     promo: React.PropTypes.string,
     description: React.PropTypes.string,
-    position: React.PropTypes.string,
+    position: React.PropTypes.shape({
+      latitude: React.PropTypes.number,
+      longitude: React.PropTypes.number,
+    }),
     behind: React.PropTypes.string,
     behind_image: React.PropTypes.string,
     image: React.PropTypes.string,
@@ -129,7 +132,10 @@ Map.defaultProps = {
     name: '',
     promo: '',
     description: '',
-    position: '',
+    position: {
+      latitude: 0,
+      longitude: 0,
+    },
     behind: '',
     behind_image: '',
     image: '',

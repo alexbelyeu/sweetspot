@@ -160,7 +160,7 @@ class SpotDetail extends Component {
                 </View>
                 <View style={styles.priceContainer}>
                   <SweetText style={styles.price}>
-                    6 €
+                    {this.props.tappedSpot.price} €
                   </SweetText>
                 </View>
               </View>
@@ -206,8 +206,12 @@ SpotDetail.propTypes = {
   tappedSpot: React.PropTypes.shape({
     name: React.PropTypes.string,
     promo: React.PropTypes.string,
+    price: React.PropTypes.number,
     description: React.PropTypes.string,
-    position: React.PropTypes.string,
+    position: React.PropTypes.shape({
+      latitude: React.PropTypes.number,
+      longitude: React.PropTypes.number,
+    }),
     behind: React.PropTypes.string,
     behind_image: React.PropTypes.string,
     image: React.PropTypes.string,
@@ -218,8 +222,12 @@ SpotDetail.defaultProps = {
   tappedSpot: {
     name: '',
     promo: '',
+    price: 0,
     description: '',
-    position: '',
+    position: {
+      latitude: 0,
+      longitude: 0,
+    },
     behind: '',
     behind_image: '',
     image: '',

@@ -177,7 +177,7 @@ class SpotsList extends Component {
                   </View>
                   <View style={styles.priceContainer}>
                     <SweetText style={styles.price}>
-                      6 €
+                      {spot.price} €
                     </SweetText>
                   </View>
                 </View>

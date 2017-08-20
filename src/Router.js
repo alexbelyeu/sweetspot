@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Platform, Dimensions } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import NavigationDrawer from './components/NavigationDrawer';
