@@ -1,22 +1,49 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { usernameChanged, passwordChanged, loginUser } from '../actions';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { SweetText, Input, Button, Spinner } from './common';
 
+const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    marginVertical: 0.05 * height,
+    marginHorizontal: 0.075 * width,
+  },
   errorTextStyle: {
-    fontSize: 20,
+    fontSize: (height < 600) ? 20 : 24,
     alignSelf: 'center',
-    color: 'red',
+    color: 'crimson',
+    top: 0,
+  },
+  usernameStyle: {
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+  },
+  passwordStyle: {
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    height: 0.081 * height,
+  },
+  spinnerContainer: {
+    flex: 1,
+    width: 0.85 * width,
+    alignItems: 'center',
+  },
+  button: {
+    borderRadius: 5,
   },
 });
 
 class LoginForm extends Component {
-
   constructor() {
     super();
-
     this.onUsernameChange = this.onUsernameChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onButtonPress = this.onButtonPress.bind(this);
@@ -37,53 +64,52 @@ class LoginForm extends Component {
 
   renderButton() {
     if (this.props.loading) {
-      return <Spinner size="large" />;
+      return (
+        <View style={styles.spinnerContainer}>
+          <Spinner size="large" />
+        </View>
+      );
     }
 
     return (
-      <Button onPress={this.onButtonPress}>
-        Login
+      <Button blue style={styles.button} onPress={this.onButtonPress}>
+        LOGIN
       </Button>
     );
   }
 
   render() {
     return (
-      <Card>
-        <CardSection>
-          <Input
-            autoCapitalize="none"
-            label="Username"
-            placeholder="alex"
-            onChangeText={this.onUsernameChange}
-            value={this.props.username}
-          />
-        </CardSection>
-        <Text style={styles.errorTextStyle}>
+      <View style={styles.container}>
+        <Input
+          autoCapitalize="none"
+          label="ios-at-outline"
+          onChangeText={this.onUsernameChange}
+          placeholder="USERNAME"
+          style={styles.usernameStyle}
+          value={this.props.username}
+        />
+        <SweetText style={styles.errorTextStyle}>
           {this.props.usernameError}
-        </Text>
-
-        <CardSection>
-          <Input
-            secureTextEntry
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordChange}
-            value={this.props.password}
-          />
-        </CardSection>
-        <Text style={styles.errorTextStyle}>
+        </SweetText>
+        <Input
+          label="ios-lock"
+          onChangeText={this.onPasswordChange}
+          placeholder="PASSWORD"
+          secureTextEntry
+          style={styles.passwordStyle}
+          value={this.props.password}
+        />
+        <SweetText style={styles.errorTextStyle}>
           {this.props.passwordError}
-        </Text>
-
-        <Text style={styles.errorTextStyle}>
+        </SweetText>
+        <SweetText style={styles.errorTextStyle}>
           {this.props.error}
-        </Text>
-
-        <CardSection>
+        </SweetText>
+        <View style={styles.buttonContainer}>
           {this.renderButton()}
-        </CardSection>
-      </Card>
+        </View>
+      </View>
     );
   }
 }
@@ -93,8 +119,8 @@ LoginForm.propTypes = {
   passwordChanged: React.PropTypes.func,
   username: React.PropTypes.string.isRequired,
   password: React.PropTypes.string.isRequired,
-  usernameError: React.PropTypes.string.isRequired,
-  passwordError: React.PropTypes.string.isRequired,
+  usernameError: React.PropTypes.string,
+  passwordError: React.PropTypes.string,
   error: React.PropTypes.string.isRequired,
   loginUser: React.PropTypes.func.isRequired,
   loading: React.PropTypes.bool.isRequired,
@@ -102,7 +128,9 @@ LoginForm.propTypes = {
 
 LoginForm.defaultProps = {
   usernameChanged: () => {},
+  usernameError: '',
   passwordChanged: () => {},
+  passwordError: '',
 };
 
 const mapStateToProps = ({ loginReducer }) => {

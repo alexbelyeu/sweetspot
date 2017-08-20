@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import { connect } from 'react-redux';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import { switchLandingTab } from '../actions';
 
+const { width } = Dimensions.get('window');
+const numberOfTabs = 2;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  page: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  tabbar: {
+    marginHorizontal: Platform.OS === 'ios' ? (0.075 * width) : 0,
+    marginTop: Platform.OS === 'ios' ? (0.25 * width) : 0,
+    backgroundColor: 'white',
+  },
+  tabStyle: {
+    width: Platform.OS === 'ios' ? 0.85 * (width / numberOfTabs) : (width / numberOfTabs),
+  },
+  labelTabbar: {
+    color: '#007aff',
   },
 });
 
@@ -30,7 +38,13 @@ class Landing extends Component {
 
   render() {
     const renderHeader = (props) => {
-      return <TabBar {...props} />;
+      return (<TabBar
+        {...props}
+        labelStyle={styles.labelTabbar}
+        indicatorStyle={{ backgroundColor: '#007aff' }}
+        style={styles.tabbar}
+        tabStyle={styles.tabStyle}
+      />);
     };
     const renderScene = ({ route }) => {
       switch (route.key) {
@@ -47,9 +61,9 @@ class Landing extends Component {
       <TabViewAnimated
         style={styles.container}
         navigationState={this.props.state}
-        renderScene={renderScene}
-        renderFooter={renderHeader}
         onRequestChangeTab={this.handleChangeTab}
+        renderScene={renderScene}
+        renderHeader={renderHeader}
       />
     );
   }

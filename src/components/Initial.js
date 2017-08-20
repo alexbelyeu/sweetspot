@@ -1,15 +1,30 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { CardSection, Button } from './common';
+import { Button, SweetText } from './common';
 import { switchLandingTab } from '../actions';
+import IMAGOTYPE from '../assets/img/imagotype/imagotype.png';
 
+const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+    top: 0.27 * height,
+  },
+  name: {
+    width: 0.7586 * width,
+    height: 0.065 * height,
+    overflow: 'visible',
+  },
+  textStyle: {
+    color: '#4a4a4a',
+    marginTop: 0.0186 * height,
+    fontFamily: 'Avenir-Light',
+  },
+  buttonsContainer: {
+    top: 0.35 * height,
   },
 });
 
@@ -34,10 +49,12 @@ class Initial extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <CardSection>
-          <Button onPress={this.onPressLogin}>Sign In</Button>
-          <Button onPress={this.onPressRegister}>Register</Button>
-        </CardSection>
+        <Image style={styles.name} source={IMAGOTYPE} />
+        <SweetText style={styles.textStyle}>real time leisure</SweetText>
+        <View style={styles.buttonsContainer}>
+          <Button blue onPress={this.onPressLogin}>LOGIN</Button>
+          <Button white onPress={this.onPressRegister}>REGISTER</Button>
+        </View>
       </View>
     );
   }

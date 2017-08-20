@@ -17,7 +17,7 @@ const loginUserSuccess = (dispatch, token) => {
     type: LOGIN_USER_SUCCESS,
     payload: token,
   });
-  Actions.main({ type: 'reset' });
+  Actions.drawer({ type: 'reset' });
 };
 
 const loginUserFail = (dispatch, response) => {

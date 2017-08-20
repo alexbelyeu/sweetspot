@@ -10,9 +10,9 @@ import {
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
-const LATITUDE = 40.3718;
-const LONGITUDE = -3.1216;
-const LATITUDE_DELTA = 9.22; // TODO Set depending on bars around
+const LATITUDE = 40.4318;
+const LONGITUDE = -3.7264;
+const LATITUDE_DELTA = 0.1; // TODO Set depending on bars around
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const DEFAULT_IMAGE = 'https://facebook.github.io/react/img/logo_og.png';  // TODO change with ours
@@ -29,13 +29,14 @@ const INITIAL_STATE = {
     longitude: LONGITUDE,
   },
   tappedSpot: {
-    name: null,
+    name: '',
     promo: '',
     description: '',
     position: '',
     behind: '',
     behind_image: DEFAULT_IMAGE,
     image: DEFAULT_IMAGE,
+    isSelected: false,
   },
 };
 
@@ -55,7 +56,7 @@ export default (state = INITIAL_STATE, action) => {
       };
 
     case TAP_ON_SPOT:
-      return { ...state, tappedSpot: action.payload };
+      return { ...state, tappedSpot: { ...action.payload, isSelected: action.payload !== null } };
 
     case REHYDRATE: {
       const incoming = action.payload.mapReducer;

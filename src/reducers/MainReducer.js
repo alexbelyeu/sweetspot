@@ -4,11 +4,11 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  index: 1,
+  index: 0,
   routes: [
-    { key: '1', icon: 'list' },
-    { key: '2', icon: 'logo' },
-    { key: '3', icon: 'saved' },
+    { key: '0', icon: 'list' },
+    { key: '1', icon: 'logo' },
+    // { key: '2', icon: 'saved' },
   ],
 };
 

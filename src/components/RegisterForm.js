@@ -1,22 +1,49 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { usernameCreated, emailCreated, passwordCreated, registerUser } from '../actions';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { SweetText, Input, Button, Spinner } from './common';
 
+const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    marginVertical: 0.05 * height,
+    marginHorizontal: 0.075 * width,
+  },
   errorTextStyle: {
-    fontSize: 20,
+    fontSize: (height < 600) ? 20 : 24,
     alignSelf: 'center',
-    color: 'red',
+    color: 'crimson',
+    top: 0,
+  },
+  usernameStyle: {
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+  },
+  passwordStyle: {
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    height: 0.081 * height,
+  },
+  spinnerContainer: {
+    flex: 1,
+    width: 0.85 * width,
+    alignItems: 'center',
+  },
+  button: {
+    borderRadius: 5,
   },
 });
 
 class RegisterForm extends Component {
-
   constructor() {
     super();
-
     this.onUsernameCreation = this.onUsernameCreation.bind(this);
     this.onEmailCreation = this.onEmailCreation.bind(this);
     this.onPasswordCreation = this.onPasswordCreation.bind(this);
@@ -42,63 +69,63 @@ class RegisterForm extends Component {
 
   renderButton() {
     if (this.props.loading) {
-      return <Spinner size="large" />;
+      return (
+        <View style={styles.spinnerContainer}>
+          <Spinner size="large" />
+        </View>
+      );
     }
 
     return (
-      <Button onPress={this.onButtonPress}>
-        Register
+      <Button blue style={styles.button} onPress={this.onButtonPress}>
+        REGISTER
       </Button>
     );
   }
 
   render() {
     return (
-      <Card>
-        <CardSection>
-          <Input
-            autoCapitalize="none"
-            label="Username"
-            placeholder="johndoe"
-            onChangeText={this.onUsernameCreation}
-            value={this.props.username}
-          />
-        </CardSection>
-        <Text style={styles.errorTextStyle}>
+      <View style={styles.container}>
+        <Input
+          autoCapitalize="none"
+          label="ios-at-outline"
+          onChangeText={this.onUsernameCreation}
+          placeholder="USERNAME"
+          style={styles.usernameStyle}
+          value={this.props.username}
+        />
+        <SweetText style={styles.errorTextStyle}>
           {this.props.usernameError}
-        </Text>
-
-        <CardSection>
-          <Input
-            autoCapitalize="none"
-            label="Email"
-            placeholder="email@gmail.com"
-            onChangeText={this.onEmailCreation}
-            value={this.props.email}
-          />
-        </CardSection>
-        <Text style={styles.errorTextStyle}>
+        </SweetText>
+        <Input
+          autoCapitalize="none"
+          label="ios-mail-outline"
+          placeholder="EMAIL"
+          onChangeText={this.onEmailCreation}
+          style={styles.emailStyle}
+          value={this.props.email}
+        />
+        <SweetText style={styles.errorTextStyle}>
           {this.props.emailError}
-        </Text>
-
-        <CardSection>
-          <Input
-            secureTextEntry
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordCreation}
-            value={this.props.password}
-          />
-        </CardSection>
-
-        <Text style={styles.errorTextStyle}>
+        </SweetText>
+        <Input
+          label="ios-lock"
+          onChangeText={this.onPasswordCreation}
+          placeholder="PASSWORD"
+          secureTextEntry
+          style={styles.passwordStyle}
+          value={this.props.password}
+        />
+        <SweetText style={styles.errorTextStyle}>
+          {this.props.passwordError}
+        </SweetText>
+        <SweetText style={styles.errorTextStyle}>
           {this.props.error}
-        </Text>
-
-        <CardSection>
+        </SweetText>
+        <View style={styles.buttonContainer}>
           {this.renderButton()}
-        </CardSection>
-      </Card>
+        </View>
+      </View>
     );
   }
 }
@@ -108,10 +135,11 @@ RegisterForm.propTypes = {
   emailCreated: React.PropTypes.func,
   passwordCreated: React.PropTypes.func,
   username: React.PropTypes.string.isRequired,
-  usernameError: React.PropTypes.string.isRequired,
+  usernameError: React.PropTypes.string,
   email: React.PropTypes.string.isRequired,
-  emailError: React.PropTypes.string.isRequired,
+  emailError: React.PropTypes.string,
   password: React.PropTypes.string.isRequired,
+  passwordError: React.PropTypes.string,
   error: React.PropTypes.string,
   registerUser: React.PropTypes.func,
   loading: React.PropTypes.bool.isRequired,
@@ -119,16 +147,19 @@ RegisterForm.propTypes = {
 
 RegisterForm.defaultProps = {
   usernameCreated: () => {},
+  usernameError: '',
   emailCreated: () => {},
-  error: '',
+  emailError: '',
   passwordCreated: () => {},
+  passwordError: '',
+  error: '',
   registerUser: () => {},
 };
 
 const mapStateToProps = ({ registerReducer }) => {
-  const { username, usernameError, email, emailError, password, error, loading } = registerReducer;
+  const { username, usernameError, email, emailError, password, passwordError, error, loading } = registerReducer;
 
-  return { username, usernameError, email, emailError, password, error, loading };
+  return { username, usernameError, email, emailError, password, passwordError, error, loading };
 };
 
 export default connect(mapStateToProps, {

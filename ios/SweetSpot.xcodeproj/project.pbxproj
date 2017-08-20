@@ -82,6 +82,7 @@
 		982490B41E7624CC0035A9A2 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 982490AA1E7624CC0035A9A2 /* SimpleLineIcons.ttf */; };
 		982490B51E7624CC0035A9A2 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 982490AB1E7624CC0035A9A2 /* Zocial.ttf */; };
 		982490B71E7626970035A9A2 /* fontello.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 982490B61E7626970035A9A2 /* fontello.ttf */; };
+		9832DE9D1E8B2C0C00BEA91F /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9832DE831E8B2BEE00BEA91F /* libBVLinearGradient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -274,6 +275,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		9832DE821E8B2BEE00BEA91F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9832DE7E1E8B2BED00BEA91F /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = BVLinearGradient;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -383,6 +391,7 @@
 		982490AA1E7624CC0035A9A2 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		982490AB1E7624CC0035A9A2 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
 		982490B61E7626970035A9A2 /* fontello.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = fontello.ttf; path = ../../../src/assets/fonts/fontello/font/fontello.ttf; sourceTree = "<group>"; };
+		9832DE7E1E8B2BED00BEA91F /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		ECDC0D4FD1D4ECD7978C7927 /* Pods-SweetSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SweetSpot.release.xcconfig"; path = "Pods/Target Support Files/Pods-SweetSpot/Pods-SweetSpot.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -399,6 +408,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9832DE9D1E8B2C0C00BEA91F /* libBVLinearGradient.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -566,6 +576,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				9832DE7E1E8B2BED00BEA91F /* BVLinearGradient.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -730,6 +741,14 @@
 			path = "../node_modules/react-native-vector-icons/Fonts";
 			sourceTree = "<group>";
 		};
+		9832DE7F1E8B2BED00BEA91F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9832DE831E8B2BEE00BEA91F /* libBVLinearGradient.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		C5D42ECAD5BAC6674E7B2BAD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -864,6 +883,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 9832DE7F1E8B2BED00BEA91F /* Products */;
+					ProjectRef = 9832DE7E1E8B2BED00BEA91F /* BVLinearGradient.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -1093,6 +1116,13 @@
 			fileType = archive.ar;
 			path = libRCTText.a;
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9832DE831E8B2BEE00BEA91F /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = 9832DE821E8B2BEE00BEA91F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

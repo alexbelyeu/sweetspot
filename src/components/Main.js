@@ -4,8 +4,7 @@ import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import { connect } from 'react-redux';
 import { createIconSetFromFontello } from 'react-native-vector-icons';
 import Icon from 'react-native-vector-icons/Ionicons';
-import MainMap from './map/MainMap';
-import SpotDetail from './spots/SpotDetail';
+import Map from './map/Map';
 import SpotsList from './spots/SpotsList';
 import { switchMainTab } from '../actions';
 import config from '../assets/fonts/fontello/config.json';
@@ -19,18 +18,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  page: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   tabStyle: {
     backgroundColor: '#f7f7f7',
     height: 50,
     shadowOpacity: 0.9,
-  },
-  indicator: {
-    backgroundColor: '#0093f3',
   },
 });
 
@@ -52,12 +43,12 @@ class Main extends Component {
         outputRange,
       });
       switch (route.key) {
-        case '1':
+        case '0':
           return <AnimatedIcon name={'ios-list'} size={32} style={{ color }} />;
-        case '2':
+        case '1':
           return <AnimatedLogo src={'logo'} name={'logo'} size={32} style={{ color }} />;
-        case '3':
-          return <AnimatedIcon name={'ios-bookmark'} size={26} style={{ color }} />;
+        // case '2':
+        //   return <AnimatedIcon name={'ios-bookmark'} size={26} style={{ color }} />;
         default:
           return null;
       }
@@ -69,19 +60,19 @@ class Main extends Component {
           {...props}
           renderIcon={renderIcon(props)}
           style={styles.tabStyle}
-          indicatorStyle={styles.indicator}
+          renderIndicator={() => null}
         />
       );
     };
 
     const renderScene = ({ route }) => {
       switch (route.key) {
+        case '0':
+          return <SpotsList list="around" />;
         case '1':
-          return <SpotsList />;
-        case '2':
-          return <MainMap />;
-        case '3':
-          return <SpotDetail />;
+          return <Map />;
+        // case '2':
+        //   return <SpotsList list="saved" />;
         default:
           return null;
       }

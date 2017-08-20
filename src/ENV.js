@@ -5,4 +5,4 @@
 //   }
 //   return 'https://sweetspotapp.pythonanywhere.com';
 // };
-export default 'https://sweetspotapp.pythonanywhere.com';
+export default 'https://api.sweetspotapp.io/';

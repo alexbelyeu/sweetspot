@@ -17,6 +17,7 @@ export const PASSWORD_CREATED = 'password_created';
 export const REGISTER_USER_SUCCESS = 'register_user_success';
 export const REGISTER_USER_USERNAME_FAIL = 'register_user_username_fail';
 export const REGISTER_USER_EMAIL_FAIL = 'register_user_email_fail';
+export const REGISTER_USER_PASSWORD_FAIL = 'register_user_password_fail';
 export const REGISTER_USER_ERROR = 'register_user_error';
 export const REGISTER_USER = 'register_user';
 
@@ -32,6 +33,8 @@ export const TAP_ON_SPOT = 'tap_on_spot';
 
 // Router actions
 export const LOGOUT = 'logout';
+export const USER_LOGGED_IN = 'user_logged_in';
+export const RESOLVE_USER = 'resolve_user';
 
 // Main actions
 export const CHANGE_MAIN_TAB = 'change_main_tab';
