@@ -5,7 +5,7 @@ const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   textStyle: {
     fontSize: (height < 600) ? 16 : 20,
-    fontFamily: 'OpenSans',
+    fontFamily: 'Avenir',
     backgroundColor: 'transparent',
     color: 'darkgray',
   },

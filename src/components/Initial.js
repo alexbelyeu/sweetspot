@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   textStyle: {
     color: '#4a4a4a',
     marginTop: 0.0186 * height,
-    fontFamily: 'OpenSans-Light',
+    fontFamily: 'Avenir-Light',
   },
   buttonsContainer: {
     top: 0.35 * height,

@@ -10,6 +10,7 @@ import { tapOnSpot } from '../../actions';
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   errorTextStyle: {
+    top: 15,
     fontSize: (height < 600) ? 20 : 24,
     alignSelf: 'center',
     color: 'crimson',
@@ -132,7 +133,7 @@ class SpotsList extends Component {
         </SweetText>
       );
     }
-    // TODO rescribe Row as a separate component
+    // TODO rewrite Row as a separate component
     // {name, promo, image, description, image, behind, behind_image} = spot
     return (
       <ListView
