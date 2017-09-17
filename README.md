@@ -4,6 +4,8 @@ Front-end repository for Sweetspot app.
 
 This is a React Native project.
 
+On iOS it looks like this: https://makeagif.com/i/Ae0M1l
+
 ## What is this repository for? ##
 ### Description ###
 Sweetspot is an app that aims to provide the best way to find the best deals that a city's bars, restaurants and pubs have to offer in real time. Sweetspot does this by:
