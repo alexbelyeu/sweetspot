@@ -28,50 +28,12 @@ Sweetspot is an app that aims to provide the best way to find the best deals tha
 ~~~
 
 ## Setup ##
-* `git clone git@bitbucket.org:sweetspotappio/sweetspot.git`
+* `git clone` this repo
 * `cd sweetspot/`
 * (If this is your first time developing with `npm` and/or React Native, following the instructions [here](https://facebook.github.io/react-native/docs/getting-started.html) to get started, then come back)
 * `npm install`
 * Assuming you already installed XCode: `react-native run-ios`
 * Assuming you already installed Android Studio and the required SDKs: `react-native run-android`
-
-
-## API ##
-Currently using the https://bitbucket.org/sweetspotappio/back API deployed in `sweetspotapp.pythonanywhere.com`
-
-Endpoints available:
-* Register
-* Login
-* Get Spots
-
-## Tests ##
-None, TODO
-
-## Deployment ##
-Once you've downloaded the project, **create a branch before you start making changes**. Then, you can commit and push changes to this branch.
-
-### Style pattern for branch naming ###
-* Feature: feature/SHORT_DESCRIPTION
-* Bug: bug/SHORT_DESCRIPTION
-* etc.
-
-### Committing and pushing ###
-Either create a branch from BitBucket and clone it to your local repo
-
--- or --
-
-Locally:
-
-* `git checkout -b NAME_OF_BRANCH`
-* --- CHANGES TO FILES ---
-* `git add .`
-* `git commit -a`
-* In message, longer description of the branch purpose.
-* `git push origin NAME_OF_BRANCH`
-
-### Merging branches (via Pull Request) ###
-
-Once a bug fix or a new feature are ready to be merged, a new Pull Request should be created, shared with the team, and wait for at least 66% of the developers to approve the PR in order to merge it.
 
 ## Exporting an Android APK ##
 First of all, generate a signing key and then set up the gradle variables (following the instructions):
@@ -84,13 +46,5 @@ cd android && ./gradlew assembleRelease
 ~~~
 
 And you will find the generated apk in `android/app/build/outputs/apk/app-release.apk`
-
-## Versioning ##
-
-Every stable build will be tagged:
-
-`git tag "X.Y.Z"`
-
-Then pushed to the repo:
 
 `git push origin master --tags`
