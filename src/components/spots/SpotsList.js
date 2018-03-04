@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, Image, ListView, TouchableWithoutFeedback, StyleSheet, Dimensions } from 'react-native';
+import {
+  View,
+  Image,
+  ListView,
+  TouchableWithoutFeedback,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -11,7 +18,7 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   errorTextStyle: {
     top: 15,
-    fontSize: (height < 600) ? 20 : 24,
+    fontSize: height < 600 ? 20 : 24,
     alignSelf: 'center',
     color: 'crimson',
   },
@@ -30,7 +37,7 @@ const styles = StyleSheet.create({
   },
   promo: {
     position: 'absolute',
-    fontSize: (height < 600) ? 18 : 22,
+    fontSize: height < 600 ? 18 : 22,
     left: 10,
     top: 15,
     fontWeight: 'bold',
@@ -41,7 +48,7 @@ const styles = StyleSheet.create({
     left: 10,
     top: 35,
     color: 'white',
-    fontSize: (height < 600) ? 14 : 18,
+    fontSize: height < 600 ? 14 : 18,
   },
   bottomBar: {
     elevation: 3,
@@ -56,7 +63,6 @@ const styles = StyleSheet.create({
     shadowOffset: { height: 3 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
-
   },
   distanceContainer: {
     flex: 3,
@@ -74,13 +80,13 @@ const styles = StyleSheet.create({
   },
   icons: {
     marginRight: 5,
-    fontSize: (height < 600) ? 14 : 18,
+    fontSize: height < 600 ? 14 : 18,
   },
   distance: {
-    fontSize: (height < 600) ? 12 : 16,
+    fontSize: height < 600 ? 12 : 16,
   },
   time: {
-    fontSize: (height < 600) ? 12 : 16,
+    fontSize: height < 600 ? 12 : 16,
   },
   priceContainer: {
     flex: 3,
@@ -90,16 +96,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'aliceblue',
   },
   price: {
-    fontSize: (height < 600) ? 22 : 26,
+    fontSize: height < 600 ? 22 : 26,
     color: '#514949',
   },
 });
 
 class SpotsList extends Component {
-
   constructor(props) {
     super(props);
-    const dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    const dataSource = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2,
+    });
     this.state = {
       dataLoaded: false,
       dataSource,
@@ -123,15 +130,9 @@ class SpotsList extends Component {
   render() {
     const { dataLoaded, error } = this.props;
     if (!dataLoaded && error === '') {
-      return (
-        <Spinner size="large" />
-      );
+      return <Spinner size="large" />;
     } else if (error !== '') {
-      return (
-        <SweetText style={styles.errorTextStyle}>
-          {error}
-        </SweetText>
-      );
+      return <SweetText style={styles.errorTextStyle}>{error}</SweetText>;
     }
     // TODO rewrite Row as a separate component
     // {name, promo, image, description, image, behind, behind_image} = spot
@@ -140,9 +141,7 @@ class SpotsList extends Component {
         dataSource={this.state.dataSource}
         renderRow={spot => (
           <View style={styles.row}>
-            <TouchableWithoutFeedback
-              onPress={() => this.rowPressed(spot)}
-            >
+            <TouchableWithoutFeedback onPress={() => this.rowPressed(spot)}>
               <View>
                 <LinearGradient
                   start={{ x: 0.5, y: 0 }}
@@ -151,34 +150,21 @@ class SpotsList extends Component {
                   colors={['transparent', 'black']}
                   style={styles.linearGradientStyle}
                 >
-                  <Image
-                    style={styles.image}
-                    source={{ uri: spot.image }}
-                  />
-                  <SweetText style={styles.promo}>
-                    {spot.promo}
-                  </SweetText>
-                  <SweetText style={styles.name}>
-                    {spot.name}
-                  </SweetText>
+                  <Image style={styles.image} source={{ uri: spot.image }} />
+                  <SweetText style={styles.promo}>{spot.promo}</SweetText>
+                  <SweetText style={styles.name}>{spot.name}</SweetText>
                 </LinearGradient>
                 <View style={styles.bottomBar}>
                   <View style={styles.distanceContainer}>
                     <Icon name="ios-navigate-outline" style={styles.icons} />
-                    <SweetText style={styles.distance}>
-                      1,3 km
-                    </SweetText>
+                    <SweetText style={styles.distance}>1,3 km</SweetText>
                   </View>
                   <View style={styles.timeContainer}>
                     <Icon name="ios-clock-outline" style={styles.icons} />
-                    <SweetText style={styles.time}>
-                      18:00 - 20:00
-                    </SweetText>
+                    <SweetText style={styles.time}>18:00 - 20:00</SweetText>
                   </View>
                   <View style={styles.priceContainer}>
-                    <SweetText style={styles.price}>
-                      {spot.price} €
-                    </SweetText>
+                    <SweetText style={styles.price}>{spot.price} €</SweetText>
                   </View>
                 </View>
               </View>

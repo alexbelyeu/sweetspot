@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     flex: 4,
     color: '#000',
     paddingHorizontal: 10,
-    fontSize: (height < 600) ? 18 : 22,
+    fontSize: height < 600 ? 18 : 22,
     width: 0.8 * width,
     height: 60,
   },
@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   labelStyle: {
-    fontSize: (height < 600) ? 22 : 26,
+    fontSize: height < 600 ? 22 : 26,
     color: 'lightgray',
   },
 });
 
-const Input = (props) => {
+const Input = props => {
   const { inputStyle, labelStyle, containerStyle } = styles;
 
   return (

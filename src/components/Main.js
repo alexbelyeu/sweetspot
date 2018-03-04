@@ -37,7 +37,9 @@ class Main extends Component {
   render() {
     const renderIcon = props => ({ route, index }) => {
       const inputRange = props.navigationState.routes.map((x, i) => i);
-      const outputRange = inputRange.map((inputIndex) => { return inputIndex === index ? '#0093f3' : 'black'; });
+      const outputRange = inputRange.map(inputIndex => {
+        return inputIndex === index ? '#0093f3' : 'black';
+      });
       const color = props.position.interpolate({
         inputRange,
         outputRange,
@@ -46,7 +48,14 @@ class Main extends Component {
         case '0':
           return <AnimatedIcon name={'ios-list'} size={32} style={{ color }} />;
         case '1':
-          return <AnimatedLogo src={'logo'} name={'logo'} size={32} style={{ color }} />;
+          return (
+            <AnimatedLogo
+              src={'logo'}
+              name={'logo'}
+              size={32}
+              style={{ color }}
+            />
+          );
         // case '2':
         //   return <AnimatedIcon name={'ios-bookmark'} size={26} style={{ color }} />;
         default:
@@ -54,7 +63,7 @@ class Main extends Component {
       }
     };
 
-    const renderFooter = (props) => {
+    const renderFooter = props => {
       return (
         <TabBar
           {...props}
@@ -101,7 +110,6 @@ Main.defaultProps = {
   switchMainTab: () => {},
   state: null,
 };
-
 
 const mapStateToProps = ({ mainReducer }) => {
   return { state: mainReducer };

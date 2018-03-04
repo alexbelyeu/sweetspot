@@ -32,9 +32,24 @@ export default (state = INITIAL_STATE, action) => {
     case PASSWORD_CREATED:
       return { ...state, password: action.payload };
     case REGISTER_USER:
-      return { ...state, loading: true, usernameError: '', passwordError: '', emailError: '', error: '' };
+      return {
+        ...state,
+        loading: true,
+        usernameError: '',
+        passwordError: '',
+        emailError: '',
+        error: '',
+      };
     case REGISTER_USER_SUCCESS:
-      return { ...state, usernameError: '', emailError: '', password: '', passwordError: '', error: '', loading: false };
+      return {
+        ...state,
+        usernameError: '',
+        emailError: '',
+        password: '',
+        passwordError: '',
+        error: '',
+        loading: false,
+      };
     case REGISTER_USER_USERNAME_FAIL:
       return { ...state, usernameError: action.payload, loading: false };
     case REGISTER_USER_EMAIL_FAIL:

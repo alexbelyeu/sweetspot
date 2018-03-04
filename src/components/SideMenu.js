@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import { connect } from 'react-redux';
 import Hr from 'react-native-hr';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -24,7 +30,7 @@ const styles = StyleSheet.create({
   },
   name: {
     color: 'black',
-    fontSize: (height < 600) ? 20 : 24,
+    fontSize: height < 600 ? 20 : 24,
   },
   logOutButton: {
     position: 'absolute',
@@ -39,30 +45,28 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   icons: {
-    fontSize: (height < 600) ? 16 : 20,
+    fontSize: height < 600 ? 16 : 20,
     marginLeft: 5,
     alignSelf: 'flex-end',
   },
 });
 
-const SideMenu = (props) => {
+const SideMenu = props => {
   return (
     <View style={styles.menu}>
       <View style={styles.header}>
-        <Image
-          style={styles.image}
-          source={USER_PROFILE}
-        />
+        <Image style={styles.image} source={USER_PROFILE} />
         <SweetText style={styles.name}>
           {props.loginUsername || props.registerUsername}
         </SweetText>
       </View>
       <Hr lineColor="#007aff" />
-      <TouchableOpacity style={styles.logOutButton} onPress={() => props.onLogOut()}>
+      <TouchableOpacity
+        style={styles.logOutButton}
+        onPress={() => props.onLogOut()}
+      >
         <View style={styles.logOutView}>
-          <SweetText style={styles.logOutText}>
-            Log out
-          </SweetText>
+          <SweetText style={styles.logOutText}>Log out</SweetText>
           <Icon name="ios-log-out-outline" style={styles.icons} />
         </View>
       </TouchableOpacity>

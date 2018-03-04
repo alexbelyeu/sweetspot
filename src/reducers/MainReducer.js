@@ -1,7 +1,5 @@
 import { REHYDRATE } from 'redux-persist/constants';
-import {
-  CHANGE_MAIN_TAB,
-} from '../actions/types';
+import { CHANGE_MAIN_TAB } from '../actions/types';
 
 const INITIAL_STATE = {
   index: 0,

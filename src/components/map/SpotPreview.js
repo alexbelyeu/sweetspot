@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, TouchableWithoutFeedback, Image, StyleSheet, Dimensions } from 'react-native';
+import {
+  View,
+  TouchableWithoutFeedback,
+  Image,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -42,7 +48,7 @@ const styles = StyleSheet.create({
     color: 'white',
     left: 0.05 * width,
     top: 0.06 * height,
-    fontSize: (height < 600) ? 16 : 20,
+    fontSize: height < 600 ? 16 : 20,
     fontWeight: 'bold',
   },
   name: {
@@ -50,7 +56,7 @@ const styles = StyleSheet.create({
     color: 'white',
     left: 0.05 * width,
     top: 0.1 * height,
-    fontSize: (height < 600) ? 12 : 16,
+    fontSize: height < 600 ? 12 : 16,
   },
   bottomBar: {
     elevation: 3,
@@ -80,13 +86,13 @@ const styles = StyleSheet.create({
   },
   icons: {
     marginRight: 5,
-    fontSize: (height < 600) ? 14 : 18,
+    fontSize: height < 600 ? 14 : 18,
   },
   distance: {
-    fontSize: (height < 600) ? 14 : 18,
+    fontSize: height < 600 ? 14 : 18,
   },
   time: {
-    fontSize: (height < 600) ? 14 : 18,
+    fontSize: height < 600 ? 14 : 18,
   },
   priceContainer: {
     flex: 3,
@@ -97,14 +103,13 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 5,
   },
   price: {
-    fontSize: (height < 600) ? 24 : 28,
+    fontSize: height < 600 ? 24 : 28,
     fontWeight: 'bold',
     color: '#514949',
   },
 });
 
 class SpotPreview extends Component {
-
   previewPressed(spot) {
     this.props.tapOnSpot(spot);
     Actions.spotdetail();
@@ -137,15 +142,11 @@ class SpotPreview extends Component {
           <View style={styles.bottomBar}>
             <View style={styles.distanceContainer}>
               <Icon name="ios-navigate-outline" style={styles.icons} />
-              <SweetText style={styles.distance}>
-                1,3 km
-              </SweetText>
+              <SweetText style={styles.distance}>1,3 km</SweetText>
             </View>
             <View style={styles.timeContainer}>
               <Icon name="ios-clock-outline" style={styles.icons} />
-              <SweetText style={styles.time}>
-                18:00 - 20:00
-              </SweetText>
+              <SweetText style={styles.time}>18:00 - 20:00</SweetText>
             </View>
             <View style={styles.priceContainer}>
               <SweetText style={styles.price}>
@@ -198,4 +199,6 @@ const mapStateToProps = ({ mapReducer }) => {
   return { tappedSpot, region };
 };
 
-export default connect(mapStateToProps, { tapOnSpot, switchMainTab })(SpotPreview);
+export default connect(mapStateToProps, { tapOnSpot, switchMainTab })(
+  SpotPreview,
+);

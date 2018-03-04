@@ -59,7 +59,12 @@ class RouterComponent extends React.Component {
     }
     return (
       <Router>
-        <Scene key="drawer" component={NavigationDrawer} open={false} onLogOut={onLogOut}>
+        <Scene
+          key="drawer"
+          component={NavigationDrawer}
+          open={false}
+          onLogOut={onLogOut}
+        >
           <Scene key="main" initial>
             <Scene
               component={Main}
@@ -70,7 +75,9 @@ class RouterComponent extends React.Component {
               navigationBarTitleImage={IMAGOTYPE_BW}
               navigationBarStyle={styles.navigationBarStyle}
               navigationBarTitleImageStyle={styles.navigationBarTitleImageStyle}
-              onLeft={() => Actions.refresh({ key: 'drawer', open: value => !value })}
+              onLeft={() =>
+                Actions.refresh({ key: 'drawer', open: value => !value })
+              }
               panHandlers={null}
               sceneStyle={{ paddingTop: 40 }}
             />
@@ -124,4 +131,6 @@ const mapStateToProps = ({ routerReducer }) => {
   return { isUserResolved, isUserLoggedIn, tokenRouter };
 };
 
-export default connect(mapStateToProps, { logOut, resolveUser, userLoggedIn })(RouterComponent);
+export default connect(mapStateToProps, { logOut, resolveUser, userLoggedIn })(
+  RouterComponent,
+);

@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
   },
 });
 
-
 class Initial extends Component {
   constructor() {
     super();
@@ -37,12 +36,12 @@ class Initial extends Component {
   }
 
   onPressLogin() {
-    this.props.switchLandingTab(0);  // TODO remove hardcoded values
+    this.props.switchLandingTab(0); // TODO remove hardcoded values
     Actions.register_login();
   }
 
   onPressRegister() {
-    this.props.switchLandingTab(1);  // TODO remove hardcoded values
+    this.props.switchLandingTab(1); // TODO remove hardcoded values
     Actions.register_login();
   }
 
@@ -52,8 +51,12 @@ class Initial extends Component {
         <Image style={styles.name} source={IMAGOTYPE} />
         <SweetText style={styles.textStyle}>real time leisure</SweetText>
         <View style={styles.buttonsContainer}>
-          <Button blue onPress={this.onPressLogin}>LOGIN</Button>
-          <Button white onPress={this.onPressRegister}>REGISTER</Button>
+          <Button blue onPress={this.onPressLogin}>
+            LOGIN
+          </Button>
+          <Button white onPress={this.onPressRegister}>
+            REGISTER
+          </Button>
         </View>
       </View>
     );

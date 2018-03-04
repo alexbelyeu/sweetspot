@@ -2,7 +2,11 @@ import React from 'react';
 import MapView, { MAP_TYPES, Marker } from 'react-native-maps';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
-import { loadSpots, /* updateMyPosition, updateRegion,*/ tapOnSpot } from '../../actions';
+import {
+  loadSpots,
+  // updateMyPosition, updateRegion,
+  tapOnSpot,
+} from '../../actions';
 import SpotPreview from './SpotPreview';
 import mapStyle from './mapStyle.json';
 import LOGO from '../../assets/img/logo-marker1/logo-marker1.png';
@@ -18,7 +22,6 @@ const styles = StyleSheet.create({
 });
 
 class Map extends React.Component {
-
   componentDidMount() {
     this.props.loadSpots(this.props.tokenRouter);
     // navigator.geolocation.getCurrentPosition(
@@ -70,7 +73,9 @@ class Map extends React.Component {
           mapType={MAP_TYPES.standard}
           onPress={() => this.props.tapOnSpot(null)}
           provider={MapView.PROVIDER_GOOGLE}
-          ref={(ref) => { this.map = ref; }}
+          ref={ref => {
+            this.map = ref;
+          }}
           showsUserLocation
           style={styles.map}
         >
@@ -78,12 +83,15 @@ class Map extends React.Component {
             <Marker
               coordinate={marker.position}
               image={LOGO}
-              onPress={(e) => { e.stopPropagation(); this.props.tapOnSpot(marker); }}
+              onPress={e => {
+                e.stopPropagation();
+                this.props.tapOnSpot(marker);
+              }}
               key={marker.key}
             />
           ))}
         </MapView>
-        {this.props.tappedSpot.isSelected && <SpotPreview /> }
+        {this.props.tappedSpot.isSelected && <SpotPreview />}
       </View>
     );
   }

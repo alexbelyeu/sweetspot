@@ -1,8 +1,4 @@
-import {
-  UPDATE_REGION,
-  UPDATE_MY_POSITION,
-  TAP_ON_SPOT,
-} from './types';
+import { UPDATE_REGION, UPDATE_MY_POSITION, TAP_ON_SPOT } from './types';
 
 export const updateRegion = region => ({
   type: UPDATE_REGION,

@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 0.075 * width,
   },
   errorTextStyle: {
-    fontSize: (height < 600) ? 20 : 24,
+    fontSize: height < 600 ? 20 : 24,
     alignSelf: 'center',
     color: 'crimson',
     top: 0,
@@ -103,12 +103,8 @@ class LoginForm extends Component {
         <SweetText style={styles.errorTextStyle}>
           {this.props.passwordError}
         </SweetText>
-        <SweetText style={styles.errorTextStyle}>
-          {this.props.error}
-        </SweetText>
-        <View style={styles.buttonContainer}>
-          {this.renderButton()}
-        </View>
+        <SweetText style={styles.errorTextStyle}>{this.props.error}</SweetText>
+        <View style={styles.buttonContainer}>{this.renderButton()}</View>
       </View>
     );
   }
@@ -134,11 +130,20 @@ LoginForm.defaultProps = {
 };
 
 const mapStateToProps = ({ loginReducer }) => {
-  const { username, password, usernameError, passwordError, error, loading } = loginReducer;
+  const {
+    username,
+    password,
+    usernameError,
+    passwordError,
+    error,
+    loading,
+  } = loginReducer;
 
   return { username, password, usernameError, passwordError, error, loading };
 };
 
 export default connect(mapStateToProps, {
-  usernameChanged, passwordChanged, loginUser,
+  usernameChanged,
+  passwordChanged,
+  loginUser,
 })(LoginForm);

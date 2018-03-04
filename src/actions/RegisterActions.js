@@ -66,7 +66,7 @@ export const passwordCreated = text => ({
 });
 
 export const registerUser = ({ username, email, password }) => {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({ type: REGISTER_USER });
 
     const request = new Request(`${BASE_URL}/accounts/`, {
@@ -83,18 +83,18 @@ export const registerUser = ({ username, email, password }) => {
     });
 
     fetch(request)
-    .then(response => response.json())
-    .catch(() => {
-      // On Test
-      registerUserSuccess(dispatch, 'token');
-      // On Prod
-      // registerUserError(dispatch, error.message);
-    })
-    .then((response) => {
-      return (response.username === username) ?  // TODO improve check
-      registerUserSuccess(dispatch, response.jwt_token)
-      : registerUserFail(dispatch, response);
-    })
-    .catch(() => registerUserSuccess(dispatch, 'token'));
+      .then(response => response.json())
+      .catch(() => {
+        // On Test
+        registerUserSuccess(dispatch, 'token');
+        // On Prod
+        // registerUserError(dispatch, error.message);
+      })
+      .then(response => {
+        return response.username === username // TODO improve check
+          ? registerUserSuccess(dispatch, response.jwt_token)
+          : registerUserFail(dispatch, response);
+      })
+      .catch(() => registerUserSuccess(dispatch, 'token'));
   };
 };

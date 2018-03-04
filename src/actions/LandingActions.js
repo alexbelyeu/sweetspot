@@ -1,6 +1,4 @@
-import {
-  CHANGE_LANDING_TAB,
-} from './types';
+import { CHANGE_LANDING_TAB } from './types';
 
 export const switchLandingTab = index => ({
   type: CHANGE_LANDING_TAB,

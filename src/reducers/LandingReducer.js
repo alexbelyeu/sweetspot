@@ -1,14 +1,9 @@
 import { REHYDRATE } from 'redux-persist/constants';
-import {
-  CHANGE_LANDING_TAB,
-} from '../actions/types';
+import { CHANGE_LANDING_TAB } from '../actions/types';
 
 const INITIAL_STATE = {
   index: 0,
-  routes: [
-    { key: '1', title: 'Login' },
-    { key: '2', title: 'Register' },
-  ],
+  routes: [{ key: '1', title: 'Login' }, { key: '2', title: 'Register' }],
 };
 
 export default (state = INITIAL_STATE, action) => {

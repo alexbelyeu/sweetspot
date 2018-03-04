@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   textStyle: {
     alignSelf: 'center',
     color: '#007aff',
-    fontSize: (height < 600) ? 16 : 20,
+    fontSize: height < 600 ? 16 : 20,
     fontWeight: '600',
     paddingTop: 10,
     paddingBottom: 10,
@@ -30,27 +30,32 @@ const styles = StyleSheet.create({
   },
 });
 
-const { blueButtonText, whiteButtonStyle, buttonStyle, linearGradientStyle, textStyle } = styles;
+const {
+  blueButtonText,
+  whiteButtonStyle,
+  buttonStyle,
+  linearGradientStyle,
+  textStyle,
+} = styles;
 
-const Button = props =>
-  (
-    <TouchableOpacity
-      onPress={props.onPress}
-      style={[buttonStyle, props.style, props.white && whiteButtonStyle]}
+const Button = props => (
+  <TouchableOpacity
+    onPress={props.onPress}
+    style={[buttonStyle, props.style, props.white && whiteButtonStyle]}
+  >
+    <LinearGradient
+      start={{ x: 0.0, y: 0.5 }}
+      end={{ x: 1, y: 0.5 }}
+      locations={[0, 0.9]}
+      colors={props.blue ? ['#005bea', '#00c6fb'] : ['#fff', '#fff']}
+      style={[props.style, linearGradientStyle]}
     >
-      <LinearGradient
-        start={{ x: 0.0, y: 0.5 }}
-        end={{ x: 1, y: 0.5 }}
-        locations={[0, 0.9]}
-        colors={props.blue ? ['#005bea', '#00c6fb'] : ['#fff', '#fff']}
-        style={[props.style, linearGradientStyle]}
-      >
-        <SweetText style={[textStyle, props.style, props.blue && blueButtonText]}>
-          {props.children}
-        </SweetText>
-      </LinearGradient>
-    </TouchableOpacity>
-  );
+      <SweetText style={[textStyle, props.style, props.blue && blueButtonText]}>
+        {props.children}
+      </SweetText>
+    </LinearGradient>
+  </TouchableOpacity>
+);
 
 Button.propTypes = {
   children: React.PropTypes.oneOfType([
