@@ -35,6 +35,7 @@ Sweetspot is an app that aims to provide the best way to find the best deals tha
 * `git clone` this repo
 * `cd sweetspot/`
 * (If this is your first time developing with `npm` and/or React Native, following the instructions [here](https://facebook.github.io/react-native/docs/getting-started.html) to get started, then come back)
+* If you want to see it running with mock offers/restaurants, checkout the `test` branch with: `git checkout test`.
 * `npm install`
 * Assuming you already installed XCode: `react-native run-ios`
 * Assuming you already installed Android Studio and the required SDKs: `react-native run-android`
