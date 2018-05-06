@@ -4,7 +4,9 @@ Front-end repository for Sweetspot app.
 
 This is a React Native project.
 
-On iOS it looks like this: https://makeagif.com/i/Ae0M1l
+Click to see the demo!
+
+[<img src="https://preview.ibb.co/hnLnzS/Screen_Shot_2018_05_06_at_12_14_45.jpg" alt="Sweetspot App" width="300" height="600">](https://www.youtube.com/watch?v=vsWjMGmsr8E)
 
 ## What is this repository for? ##
 ### Description ###
