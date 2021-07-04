@@ -9,7 +9,9 @@ class NavigationDrawer extends Component {
     const children = state.children;
     return (
       <Drawer
-        ref={(ref) => { this.drawer = ref; }}
+        ref={ref => {
+          this.drawer = ref;
+        }}
         open={state.open}
         onOpen={() => Actions.refresh({ key: state.key, open: true })}
         onClose={() => Actions.refresh({ key: state.key, open: false })}
@@ -23,7 +25,10 @@ class NavigationDrawer extends Component {
           main: { opacity: Math.max(0.54, 1 - ratio) },
         })}
       >
-        <DefaultRenderer navigationState={children[0]} onNavigate={this.props.onNavigate} />
+        <DefaultRenderer
+          navigationState={children[0]}
+          onNavigate={this.props.onNavigate}
+        />
       </Drawer>
     );
   }

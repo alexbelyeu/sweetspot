@@ -15,7 +15,7 @@ const LONGITUDE = -3.7264;
 const LATITUDE_DELTA = 0.1; // TODO Set depending on bars around
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-const DEFAULT_IMAGE = 'https://facebook.github.io/react/img/logo_og.png';  // TODO change with ours
+const DEFAULT_IMAGE = 'https://facebook.github.io/react/img/logo_og.png'; // TODO change with ours
 
 const INITIAL_STATE = {
   region: {
@@ -32,7 +32,7 @@ const INITIAL_STATE = {
     name: '',
     promo: '',
     description: '',
-    position: '',
+    position: { latitude: 0, longitude: 0 },
     behind: '',
     behind_image: DEFAULT_IMAGE,
     image: DEFAULT_IMAGE,
@@ -42,13 +42,14 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-
     case UPDATE_MY_POSITION:
       return { ...state, myLocation: action.payload };
 
     case UPDATE_REGION:
-      return { ...state,
-        region: {  // TODO vaya ñapa
+      return {
+        ...state,
+        region: {
+          // TODO vaya ñapa
           ...state.region,
           latitude: action.payload.latitude,
           longitude: action.payload.longitude,
@@ -56,7 +57,10 @@ export default (state = INITIAL_STATE, action) => {
       };
 
     case TAP_ON_SPOT:
-      return { ...state, tappedSpot: { ...action.payload, isSelected: action.payload !== null } };
+      return {
+        ...state,
+        tappedSpot: { ...action.payload, isSelected: action.payload !== null },
+      };
 
     case REHYDRATE: {
       const incoming = action.payload.mapReducer;

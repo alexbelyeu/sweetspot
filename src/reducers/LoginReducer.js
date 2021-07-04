@@ -26,13 +26,29 @@ export default (state = INITIAL_STATE, action) => {
     case PASSWORD_CHANGED:
       return { ...state, password: action.payload };
     case LOGIN_USER:
-      return { ...state, loading: true, error: '', usernameError: '', passwordError: '' };
+      return {
+        ...state,
+        loading: true,
+        error: '',
+        usernameError: '',
+        passwordError: '',
+      };
     case LOGIN_USER_SUCCESS:
       return { ...state, password: '', loading: false };
     case LOGIN_USER_USERNAME_FAIL:
-      return { ...state, usernameError: action.payload, password: '', loading: false };
+      return {
+        ...state,
+        usernameError: action.payload,
+        password: '',
+        loading: false,
+      };
     case LOGIN_USER_PASSWORD_FAIL:
-      return { ...state, passwordError: action.payload, password: '', loading: false };
+      return {
+        ...state,
+        passwordError: action.payload,
+        password: '',
+        loading: false,
+      };
     case LOGIN_USER_ERROR:
       return { ...state, error: action.payload, password: '', loading: false };
     case REGISTER_USER_SUCCESS:

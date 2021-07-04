@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { compose, createStore, applyMiddleware } from 'redux';
-import { persistStore, purgeStoredState, autoRehydrate } from 'redux-persist';
+import { persistStore, purgeStoredState, autoRehydrate } from 'redux-persist'; // eslint-disable-line
 import { AsyncStorage } from 'react-native';
 import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
@@ -14,10 +14,7 @@ class App extends Component {
     const store = createStore(
       reducers,
       {},
-      compose(
-        applyMiddleware(ReduxThunk),
-        autoRehydrate(),
-      ),
+      compose(applyMiddleware(ReduxThunk), autoRehydrate()),
     );
 
     persistStore(store, { storage: AsyncStorage });

@@ -14,7 +14,12 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case LOAD_SPOTS_SUCCESS:
-      return { ...state, items: [...action.payload], dataLoaded: true, error: '' };
+      return {
+        ...state,
+        items: [...action.payload],
+        dataLoaded: true,
+        error: '',
+      };
     case LOAD_SPOTS_ERROR:
       return { ...state, items: [], dataLoaded: false, error: action.payload };
     case LOAD_SPOTS:

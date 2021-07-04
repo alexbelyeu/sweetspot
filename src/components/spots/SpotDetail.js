@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, View, Image, StyleSheet, Dimensions } from 'react-native';
+import {
+  TouchableWithoutFeedback,
+  View,
+  Image,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -29,7 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   promo: {
-    fontSize: (height < 600) ? 20 : 24,
+    fontSize: height < 600 ? 20 : 24,
     fontWeight: 'bold',
     color: 'gray',
     textAlign: 'center',
@@ -60,14 +66,14 @@ const styles = StyleSheet.create({
   },
   icons: {
     marginRight: 5,
-    fontSize: (height < 600) ? 14 : 18,
+    fontSize: height < 600 ? 14 : 18,
     color: '#007aff',
   },
   distance: {
-    fontSize: (height < 600) ? 12 : 16,
+    fontSize: height < 600 ? 12 : 16,
   },
   time: {
-    fontSize: (height < 600) ? 12 : 16,
+    fontSize: height < 600 ? 12 : 16,
   },
   priceContainer: {
     flex: 3,
@@ -77,7 +83,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 5,
   },
   price: {
-    fontSize: (height < 600) ? 22 : 26,
+    fontSize: height < 600 ? 22 : 26,
     color: 'white',
   },
   imageSlide: {
@@ -95,11 +101,12 @@ const styles = StyleSheet.create({
     width: 0.9 * width,
   },
   offerTextStyle: {
-    fontSize: (height < 600) ? 14 : 18,
+    fontSize: height < 600 ? 14 : 18,
   },
   closeButtonContainer: {
     position: 'absolute',
     alignItems: 'center',
+    justifyContent: 'center',
     height: 30,
     width: 30,
     top: 0.04 * height,
@@ -110,8 +117,9 @@ const styles = StyleSheet.create({
   },
   closeButtonIcon: {
     backgroundColor: 'transparent',
+    top: 2,
     color: 'white',
-    fontSize: (height < 600) ? 30 : 34,
+    fontSize: height < 600 ? 30 : 34,
   },
   imagotypeContainer: {
     position: 'absolute',
@@ -141,42 +149,41 @@ class SpotDetail extends Component {
         >
           <View style={styles.parallaxViewStyle}>
             <View style={styles.offer}>
-              <SweetText style={styles.promo}> {this.props.tappedSpot.promo} </SweetText>
+              <SweetText style={styles.promo}>
+                {' '}
+                {this.props.tappedSpot.promo}{' '}
+              </SweetText>
               <SweetText style={styles.name}>
                 {this.props.tappedSpot.name}
               </SweetText>
               <View style={styles.bottomBar}>
                 <View style={styles.distanceContainer}>
                   <Icon name="ios-navigate-outline" style={styles.icons} />
-                  <SweetText style={styles.distance}>
-                    1,3 km
-                  </SweetText>
+                  <SweetText style={styles.distance}>1,3 km</SweetText>
                 </View>
                 <View style={styles.timeContainer}>
                   <Icon name="ios-clock-outline" style={styles.icons} />
-                  <SweetText style={styles.time}>
-                    18:00 - 20:00
-                  </SweetText>
+                  <SweetText style={styles.time}>18:00 - 20:00</SweetText>
                 </View>
                 <View style={styles.priceContainer}>
                   <SweetText style={styles.price}>
-                    6 €
+                    {this.props.tappedSpot.price} €
                   </SweetText>
                 </View>
               </View>
             </View>
             <View style={styles.imageSlide}>
-              {
-                [this.props.tappedSpot.behind_image,
-                  this.props.tappedSpot.behind_image,
-                  this.props.tappedSpot.behind_image,
-                  this.props.tappedSpot.behind_image,
-                ].map(image => (
-                  <Image
-                    style={styles.imagesBar}
-                    source={{ uri: image }}
-                    key={Math.random()}
-                  />
+              {[
+                this.props.tappedSpot.behind_image,
+                this.props.tappedSpot.behind_image,
+                this.props.tappedSpot.behind_image,
+                this.props.tappedSpot.behind_image,
+              ].map(image => (
+                <Image
+                  style={styles.imagesBar}
+                  source={{ uri: image }}
+                  key={Math.random()}
+                />
               ))}
             </View>
             <View style={styles.offerTextContainer}>
@@ -188,10 +195,7 @@ class SpotDetail extends Component {
         </ParallaxView>
         <TouchableWithoutFeedback onPress={Actions.pop}>
           <View style={styles.closeButtonContainer}>
-            <Icon
-              name="ios-close-outline"
-              style={styles.closeButtonIcon}
-            />
+            <Icon name="ios-close-outline" style={styles.closeButtonIcon} />
           </View>
         </TouchableWithoutFeedback>
         <View style={styles.imagotypeContainer}>
@@ -206,8 +210,12 @@ SpotDetail.propTypes = {
   tappedSpot: React.PropTypes.shape({
     name: React.PropTypes.string,
     promo: React.PropTypes.string,
+    price: React.PropTypes.number,
     description: React.PropTypes.string,
-    position: React.PropTypes.string,
+    position: React.PropTypes.shape({
+      latitude: React.PropTypes.number,
+      longitude: React.PropTypes.number,
+    }),
     behind: React.PropTypes.string,
     behind_image: React.PropTypes.string,
     image: React.PropTypes.string,
@@ -218,8 +226,12 @@ SpotDetail.defaultProps = {
   tappedSpot: {
     name: '',
     promo: '',
+    price: 0,
     description: '',
-    position: '',
+    position: {
+      latitude: 0,
+      longitude: 0,
+    },
     behind: '',
     behind_image: '',
     image: '',

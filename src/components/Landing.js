@@ -13,12 +13,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tabbar: {
-    marginHorizontal: Platform.OS === 'ios' ? (0.075 * width) : 0,
-    marginTop: Platform.OS === 'ios' ? (0.25 * width) : 0,
+    marginHorizontal: Platform.OS === 'ios' ? 0.075 * width : 0,
+    marginTop: Platform.OS === 'ios' ? 0.25 * width : 0,
     backgroundColor: 'white',
   },
   tabStyle: {
-    width: Platform.OS === 'ios' ? 0.85 * (width / numberOfTabs) : (width / numberOfTabs),
+    width:
+      Platform.OS === 'ios'
+        ? 0.85 * (width / numberOfTabs)
+        : width / numberOfTabs,
   },
   labelTabbar: {
     color: '#007aff',
@@ -35,16 +38,17 @@ class Landing extends Component {
     this.props.switchLandingTab(index);
   }
 
-
   render() {
-    const renderHeader = (props) => {
-      return (<TabBar
-        {...props}
-        labelStyle={styles.labelTabbar}
-        indicatorStyle={{ backgroundColor: '#007aff' }}
-        style={styles.tabbar}
-        tabStyle={styles.tabStyle}
-      />);
+    const renderHeader = props => {
+      return (
+        <TabBar
+          {...props}
+          labelStyle={styles.labelTabbar}
+          indicatorStyle={{ backgroundColor: '#007aff' }}
+          style={styles.tabbar}
+          tabStyle={styles.tabStyle}
+        />
+      );
     };
     const renderScene = ({ route }) => {
       switch (route.key) {

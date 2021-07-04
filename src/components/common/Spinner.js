@@ -9,12 +9,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const Spinner = ({ size }) =>
-  (
-    <View style={styles.spinnerStyle}>
-      <ActivityIndicator size={size || 'large'} />
-    </View>
-  );
+const Spinner = ({ size }) => (
+  <View style={styles.spinnerStyle}>
+    <ActivityIndicator size={size || 'large'} />
+  </View>
+);
 Spinner.propTypes = {
   size: React.PropTypes.string.isRequired,
 };

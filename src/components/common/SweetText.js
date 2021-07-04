@@ -4,16 +4,18 @@ import { Text, StyleSheet, Dimensions } from 'react-native';
 const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   textStyle: {
-    fontSize: (height < 600) ? 16 : 20,
+    fontSize: height < 600 ? 16 : 20,
     fontFamily: 'Avenir',
     backgroundColor: 'transparent',
     color: 'darkgray',
   },
 });
 
-const SweetText = (props) => {
+const SweetText = props => {
   return (
-    <Text onPress={props.onPress} style={[styles.textStyle, props.style]}>{props.children}</Text>
+    <Text onPress={props.onPress} style={[styles.textStyle, props.style]}>
+      {props.children}
+    </Text>
   );
 };
 

@@ -16,11 +16,23 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case LOGIN_USER_SUCCESS:
-      return { isUserLoggedIn: true, isUserResolved: true, tokenRouter: action.payload };
+      return {
+        isUserLoggedIn: true,
+        isUserResolved: true,
+        tokenRouter: action.payload,
+      };
     case LOGOUT:
-      return { isUserLoggedIn: false, isUserResolved: true, tokenRouter: 'noToken' };
+      return {
+        isUserLoggedIn: false,
+        isUserResolved: true,
+        tokenRouter: 'noToken',
+      };
     case REGISTER_USER_SUCCESS:
-      return { isUserLoggedIn: true, isUserResolved: true, tokenRouter: action.payload };
+      return {
+        isUserLoggedIn: true,
+        isUserResolved: true,
+        tokenRouter: action.payload,
+      };
     case RESOLVE_USER:
       return { ...state, isUserResolved: true };
     case USER_LOGGED_IN:
